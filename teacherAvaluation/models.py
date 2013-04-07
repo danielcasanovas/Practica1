@@ -2,12 +2,23 @@ from django.db import models
 
 # Create your models here.
 
-#class Sobre(models.Model):
-#	date = models.DateTimeField()
-#	amount = models.IntegerField()
-#	concept = models.TextField(max_length=100)
-
 class Teacher(models.Model):
-	edat = models.IntegerField()
-	name = models.CharField(max_length=100)
+	idTeacher = models.TextField(primary_key=True, max_lenght=10)
+	name = models.CharField(max_length=25)
+	sexe = models.CharField(max_length=1)
+
+
+class Subject(models.Model):
+	idSubject = models.TextField(primary_key=True, max_lenght=10)
+	name = models.CharField(max_length=25)
+	numberOfCredits = models.IntegerField()
+	degree = models.ForeignKey(Degree)
+
+class Degree(models.Model):
+	idDegree = models.TextField(primary_key=True, max_lenght=10)
+	name = models.CharField(max_length=25)
+	name = models.CharField(max_length=25)
+	sexe = models.CharField(max_length=1)
+
+
 	
