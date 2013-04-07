@@ -6,7 +6,7 @@ def mainpage(request):
 	variables = Context({
 		'titlehead': 'Teacheravaluation aPP',
 		'pagetitle': 'Welcome to the Teacheravaluation aPPlication',
-		'contentbody': 'Managing non legal funding since 2013'
+		'contentbody': 'OLA KE ASE'
 
 		})
 	output = template.render(variables)

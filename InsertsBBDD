@@ -1,0 +1,10 @@
+>>> from teacherAvaluation.models import *
+>>> s1 = Degree(idDegree="1",name="Information Technology",faculty="EPS",numberOfCredits=240,numberOfAcademicYears=4)
+>>> s1.save()
+>>> s2 = Teacher(idTeacher="1",name="Carles Mateu",sexe="H",nationality="ESP")
+>>> s2.save()
+>>> s3 = Subject(idSubject="1",name="Sistemes Web",numberOfCredits=10,teacher=s2,degree=s1)
+>>> s3.save()
+>>> s4 = Evaluation(subject=s3,teacher=s2,numericEvaluation=10)
+>>> s4.save()
+
