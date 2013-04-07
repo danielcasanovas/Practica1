@@ -5,9 +5,9 @@ from django.template.loader import get_template
 def mainpage(request):
 	template = get_template('mainpage.html')
 	variables = Context({
-		'titlehead': 'Teacheravaluation aPP',
-		'pagetitle': 'Welcome to the Teacheravaluation aPPlication',
-		'contentbody': 'OLA KE ASE'
+		'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+		'contentbody': 'Benvinguts a el aplicatiu de evaluacio de docencia , navega pel menu per veure el llistat de les diferents entitats.'
 
 		})
 	output = template.render(variables)
