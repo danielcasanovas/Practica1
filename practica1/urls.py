@@ -18,6 +18,9 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+
+    # Login
+    url(r'^login/$', 'django.contrib.auth.views.login'),
 )
 if settings.DEBUG and settings.STATIC_ROOT:
     urlpatterns += patterns('',
