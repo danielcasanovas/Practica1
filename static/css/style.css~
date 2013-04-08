@@ -1,0 +1,42 @@
+.table-corners {width:900px}
+
+body {
+	background-image:url("../img/bg.png");
+	margin:0px;
+	padding-top:15px;
+	font-family: sans-serif;
+	font-size:13px;
+	color:#222222;
+	background-repeat: repeat-x;
+}
+td {vertical-align: top; line-height:20px}
+h1 {font-size:18px; font-weight:normal; padding:0px; margin:0px}
+a:link, a:visited {
+	text-decoration: none;
+	color: #666666;
+} a:hover {color:#003156}
+.main-table {border: 1px solid #FFFFFF; background-color:#FFFFFF; width:100%}
+.style1 {font-size: 10px}
+.top-img {background-image: url("../img/top-bg.png"); height:250px; padding-left:50px; color:#FFFFFF}
+.menu {height:35px; vertical-align:middle; padding-left:10px; padding-right:10px; background-color: #1E90FF}
+.table-corners {width:900px;}
+.bg-white {background-color:#FFFFFF}
+.corner1 {background-image:url("../img/corner1.gif"); width:20px; height:20px}
+.corner2 {background-image:url("../img/corner2.gif"); width:20px; height:20px}
+.corner3 {background-image:url("../img/corner3.gif"); width:20px; height:20px}
+.corner4 {background-image:url("../img/corner4.gif"); width:20px; height:20px}
+a.menu-link, a.menu-link:visited {background-image:url("../img/menu-sep.png"); height:30px; line-height:30px; background-position: right; background-repeat:no-repeat; padding-left:7px; padding-right:14px; padding-top:6px; padding-bottom:6px; font-family: sans-serif; font-size:12px; color:#FFF; text-decoration:none; font-weight:bold}
+a.menu-link:hover { background-color:#58ACFA; color:#ffffff }
+.content {padding-top:25px; padding-left:2px; padding-right:60px; padding-bottom:35px}
+.content-right {padding-top:0px}
+a.made-in {color:#000000}
+.made-in_text {
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #aaaaaa;
+	padding-left:3px;
+	padding-bottom:15px
+}
+a.menu-right, a.menu-right:visited {font-size: 18px; line-height:30px; padding-left:20px; text-decoration:none; color:#379BFF; background-color:#ffffff; width:200px; display:block; border-bottom:#CCCCCC solid 1px}
+a.menu-right:hover {background-color:#63B0FF; color:#FFFFFF}
+.credits {font-size: x-small}
