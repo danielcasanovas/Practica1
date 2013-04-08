@@ -11,6 +11,8 @@ urlpatterns = patterns('',
     url(r'^$', mainpage, name='home'),
     #url(r'^practica1/', include('practica1.foo.urls')),
 
+    # Teachers:
+    url(r'^teachers/$', teacher, name='teachers'),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

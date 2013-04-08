@@ -1,0 +1,10 @@
+{% extends "templateBase.html" %}
+{% block content %}
+{% if state %}
+    {{state}}
+{% else %}
+	{{ contentbody }}
+	{{ teachers_list }}
+{% endif %}
+
+{% endblock %}
