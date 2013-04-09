@@ -22,7 +22,7 @@ def teacher(request):
 	variables = Context({
 		'titlehead': 'Teacher Avaluation',
 		'pagetitle': 'Evaluacio de docencia',
-		'contentbody': 'Llistat de Teachers:',
+		'contentbody': 'Llistat de Professors:',
 		'teachers_list' : listOfTeachers
 		})
 	output = template.render(variables)
@@ -35,10 +35,12 @@ def singular_teacher(request,teacher_id):
 		template= get_template('single_teacher.html')
 		teacher = Teacher.objects.get(idTeacher=teacher_id)
 		variables = Context({
+			'contentbody': 'Dades Personals Professor:',
 			'titlehead': 'Teacher Avaluation',
 			'pagetitle': 'Evaluacio de docencia',
 			'nameteacher': teacher.name,
 			'sex': teacher.sexe,
+
 			'nationality': teacher.nationality
 			})
 		output = template.render(variables)

@@ -3,13 +3,14 @@
 {% if state %}
     {{state}}
 {% else %}
-	{{ contentbody }}
+	<b><u>{{ contentbody }}</u></b>
 	<br>
-	{{ nameteacher }}
 	<br>
-	{{ sex }}
+	<u>Nom:</u> {{ nameteacher }}
 	<br>
-	{{ nationality }}
+	<u>Sexe:</u> {{ sex }}
+	<br>
+	<u>Nacionalitat:</u> {{ nationality }}
 {% endif %}
 
 {% endblock %}

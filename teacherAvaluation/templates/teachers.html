@@ -3,9 +3,17 @@
 {% if state %}
     {{state}}
 {% else %}
-	{{ contentbody }}
-	<br>
-	{{ teachers_list }}
+<b><u>{{ contentbody }}</u></b>
+<br>
+	
+	{% for i in teachers_list %}
+<br>
+	ID: {{ i.idTeacher }} - Nom :  <a href="/teachers/{{ i.idTeacher }}"> {{ i.name }} </a>
+
+	
+	{% endfor %}
+
+
 {% endif %}
 
 {% endblock %}
