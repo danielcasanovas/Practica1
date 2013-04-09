@@ -52,11 +52,11 @@ def subject(request):
 
 def evaluation(request):
 	template = get_template('evaluation.html')
-	listOfEvaluation = evaluation.objects.all()
+	listOfEvaluation = Evaluation.objects.all()
 	variables = Context({
 		'titlehead': 'Teacher Avaluation',
 		'pagetitle': 'Evaluacio de docencia',
-		'contentbody': 'Llistat de Carreres:',
+		'contentbody': 'Llistat de evaluacio - Professors:',
 		'evaluation_list' : listOfEvaluation
 		})
 	output = template.render(variables)
