@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.template import Context
+from django.template import Context , RequestContext
 from django.template.loader import get_template
 from django.contrib.auth import authenticate, login, logout
 from teacherAvaluation.models import *
@@ -12,7 +12,8 @@ def mainpage(request):
 		'contentbody': 'Benvinguts a el aplicatiu de evaluacio de docencia , navega pel menu per veure el llistat de les diferents entitats.'
 		})
 	output = template.render(variables)
-	return HttpResponse(output)
+	context_instance = RequestContext(request)
+	return HttpResponse(output,context_instance)
 
 def teacher(request):
 	template = get_template('teachers.html')
@@ -24,7 +25,9 @@ def teacher(request):
 		'teachers_list' : listOfTeachers
 		})
 	output = template.render(variables)
-	return HttpResponse(output)
+	context_instance = RequestContext(request)
+	return HttpResponse(output,context_instance)
+
 
 def degree(request):
 	template = get_template('degrees.html')
@@ -36,7 +39,8 @@ def degree(request):
 		'degrees_list' : listOfDegrees
 		})
 	output = template.render(variables)
-	return HttpResponse(output)
+	context_instance = RequestContext(request)
+	return HttpResponse(output,context_instance)
 
 def subject(request):
 	template = get_template('subjects.html')
@@ -48,7 +52,8 @@ def subject(request):
 		'subjects_list' : listOfSubjects
 		})
 	output = template.render(variables)
-	return HttpResponse(output)
+	context_instance = RequestContext(request)
+	return HttpResponse(output,context_instance)
 
 def evaluation(request):
 	template = get_template('evaluation.html')
@@ -56,11 +61,12 @@ def evaluation(request):
 	variables = Context({
 		'titlehead': 'Teacher Avaluation',
 		'pagetitle': 'Evaluacio de docencia',
-		'contentbody': 'Llistat de evaluacio - Professors:',
+		'contentbody': 'Llistat de Evaluacions - Professors:',
 		'evaluation_list' : listOfEvaluation
 		})
 	output = template.render(variables)
-	return HttpResponse(output)
+	context_instance = RequestContext(request)
+	return HttpResponse(output,context_instance)
 
 def logoutPage(request):
 	logout(request)
@@ -69,5 +75,7 @@ def logoutPage(request):
 		'titlehead': 'Log out',
 		'contentbody': 'Has tancat la sessio.',
 		})
+
 	output = template.render(variables)
-	return HttpResponse(output)
+	context_instance = RequestContext(request)
+	return HttpResponse(output,context_instance)
