@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url 
 from django.conf import settings
 from teacherAvaluation.views import *
+from django.conf.urls.defaults import *
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -13,6 +14,12 @@ urlpatterns = patterns('',
 
     # Teachers:
     url(r'^teachers/$', teacher, name='teachers'),
+    # Teachers:
+    url(r'^degrees/$', degree, name='degrees'),
+    # Teachers:
+    url(r'^subjects/$', subject, name='subjects'),
+    # Teachers:
+    url(r'^evaluations/$', evaluation, name='evaluations'),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
@@ -21,6 +28,7 @@ urlpatterns = patterns('',
 
     # Login
     url(r'^login/$', 'django.contrib.auth.views.login'),
+    url(r'^logout/$', logoutPage),
 )
 if settings.DEBUG and settings.STATIC_ROOT:
     urlpatterns += patterns('',

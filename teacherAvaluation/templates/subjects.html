@@ -1,0 +1,11 @@
+{% extends "templateBase.html" %}
+{% block content %}
+{% if state %}
+    {{state}}
+{% else %}
+	{{ contentbody }}
+	<br>
+	{{ subjects_list }}
+{% endif %}
+
+{% endblock %}
