@@ -3,6 +3,7 @@ from django.template import Context , RequestContext
 from django.template.loader import get_template
 from django.contrib.auth import authenticate, logout
 from teacherAvaluation.models import *
+from django.http import Http404
 
 def mainpage(request):
 	template = get_template('mainpage.html')
@@ -26,6 +27,25 @@ def teacher(request):
 		})
 	output = template.render(variables)
 	context_instance = RequestContext(request)
+	return HttpResponse(output,context_instance)
+
+def singular_teacher(request,teacher_id):
+	#template= get_template('single_teacher.html')
+	try:
+		template= get_template('single_teacher.html')
+		teacher = Teacher.objects.get(idTeacher=teacher_id)
+		variables = Context({
+			'titlehead': 'Teacher Avaluation',
+			'pagetitle': 'Evaluacio de docencia',
+			'nameteacher': teacher.name,
+			'sex': teacher.sexe,
+			'nationality': teacher.nationality
+			})
+		output = template.render(variables)
+		context_instance = RequestContext(request)
+	except:
+		raise Http404
+       		
 	return HttpResponse(output,context_instance)
 
 

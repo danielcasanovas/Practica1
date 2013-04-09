@@ -14,6 +14,12 @@ urlpatterns = patterns('',
 
     # Teachers:
     url(r'^teachers/$', teacher, name='teachers'),
+    # Teachers:
+    url(r'^degrees/$', degree, name='degrees'),
+    # Teachers:
+    url(r'^subjects/$', subject, name='subjects'),
+    # Teachers:
+    url(r'^evaluations/$', evaluation, name='evaluations'),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
