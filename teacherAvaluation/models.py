@@ -41,7 +41,7 @@ class Evaluation(models.Model):
 	numericEvaluation = models.IntegerField()
 	
 	def __unicode__(self):
-		return "Nom Professor: "+self.teacher.name+" Assignatura: "+self.subject.name+str(self.numericEvaluation)
+		return "Nom Professor: "+self.teacher.name+" Assignatura: "+self.subject.name+" = "+str(self.numericEvaluation)
 
 
 

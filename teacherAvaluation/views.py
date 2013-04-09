@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.template import Context , RequestContext
 from django.template.loader import get_template
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, logout
 from teacherAvaluation.models import *
 
 def mainpage(request):
