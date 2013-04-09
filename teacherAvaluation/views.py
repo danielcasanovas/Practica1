@@ -20,7 +20,7 @@ def teacher(request):
 	variables = Context({
 		'titlehead': 'Teacher Avaluation',
 		'pagetitle': 'Evaluacio de docencia',
-		'contentbody': 'Llistat de teachers:',
+		'contentbody': 'Llistat de Teachers:',
 		'teachers_list' : listOfTeachers
 		})
 	output = template.render(variables)
@@ -44,7 +44,7 @@ def subject(request):
 	variables = Context({
 		'titlehead': 'Teacher Avaluation',
 		'pagetitle': 'Evaluacio de docencia',
-		'contentbody': 'Llistat de Carreres:',
+		'contentbody': 'Llistat de Assignatures:',
 		'subjects_list' : listOfSubjects
 		})
 	output = template.render(variables)
