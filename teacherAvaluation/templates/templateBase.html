@@ -46,7 +46,7 @@
 				{% block content %}{% endblock %}
 			</td>
 			<td width="200" class="content-right">
-					 <br>{% if user.username %}
+					 <br>{% if user.is_authenticated %}
 					<p>
 						 Benvingut {{ user.username }}! <br>Pulsa els enllaços del menu per iniciar la navegacio.
 					<a href="/logout/">log out</a>
