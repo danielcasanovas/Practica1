@@ -1,11 +1,16 @@
 {% extends "templateBase.html" %}
 {% block content %}
-{% if state %}
-    {{state}}
-{% else %}
-	{{ contentbody }}
-	<br>
-	{{ degrees_list }}
-{% endif %}
+<b><u>{{ contentbody }}</u></b>
+<br>
+	
+	{% for i in degrees_list %}
+<br>
+	ID: {{ i.idDegree }} - Nom :  <a href="/degrees/{{ i.idDegree }}"> {{ i.name }} </a>
+
+	
+	{% endfor %}
+
+
+
 
 {% endblock %}

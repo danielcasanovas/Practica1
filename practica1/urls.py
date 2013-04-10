@@ -14,13 +14,15 @@ urlpatterns = patterns('',
 
     # Teachers:
     url(r'^teachers/$', teacher, name='teachers'),
-    url(r'^teachers/(?P<teacher_id>\w+)/$', singular_teacher , name='singular teacher'),
+    url(r'^teachers/(?P<teacher_id>\w+)/$', singular_teacher),
     
     # Degrees:
     url(r'^degrees/$', degree, name='degrees'),
+    url(r'^degrees/(?P<degree_id>\w+)/$', singular_degree ),
 
     # Subjects:
     url(r'^subjects/$', subject, name='subjects'),
+    url(r'^subjects/(?P<subject_id>\w+)/$', singular_subject ),
 
     # Evaluations:
     url(r'^evaluations/$', evaluation, name='evaluations'),

@@ -1,11 +1,12 @@
 {% extends "templateBase.html" %}
 {% block content %}
-{% if state %}
-    {{state}}
-{% else %}
-	{{ contentbody }}
-	<br>
-	{{ evaluation_list }}
-{% endif %}
+<b><u>{{ contentbody }}</u></b>
+<br>
+	
+	{% for i in evaluation_list %}
+<br>
+	<u>Professor:</u> <a href="/teachers/{{ i.teacher.idTeacher }}"> {{ i.teacher }} </a> - <u>Assignatura</u> : <a href="/subjects/{{ i.subject.idSubject }}"> {{ i.subject }} </a> - <u>Evaluacio</u> : {{ i.numericEvaluation }}
 
+	
+	{% endfor %}
 {% endblock %}

@@ -1,8 +1,5 @@
 {% extends "templateBase.html" %}
 {% block content %}
-{% if state %}
-    {{state}}
-{% else %}
 <b><u>{{ contentbody }}</u></b>
 <br>
 	
@@ -12,8 +9,4 @@
 
 	
 	{% endfor %}
-
-
-{% endif %}
-
 {% endblock %}

@@ -11,7 +11,7 @@ class Degree(models.Model):
 	numberOfAcademicYears = models.IntegerField()
 	
 	def __unicode__(self):
-		return "Nom: "+self.name
+		return self.name
 
 
 class Teacher(models.Model):
@@ -21,7 +21,7 @@ class Teacher(models.Model):
 	nationality = models.CharField(max_length=25)
 	
 	def __unicode__(self):
-		return "Nom: "+self.name+" - Id: "+self.idTeacher
+		return self.name
 
 
 class Subject(models.Model):
@@ -32,7 +32,7 @@ class Subject(models.Model):
 	degree = models.ForeignKey(Degree)
 
 	def __unicode__(self):
-		return "Nom: "+self.name
+		return self.name
 
 
 class Evaluation(models.Model):
@@ -41,7 +41,7 @@ class Evaluation(models.Model):
 	numericEvaluation = models.IntegerField()
 	
 	def __unicode__(self):
-		return "Nom Professor: "+self.teacher.name+" Assignatura: "+self.subject.name+" = "+str(self.numericEvaluation)
+		return self.teacher.name++self.subject.name+str(self.numericEvaluation)
 
 
 
