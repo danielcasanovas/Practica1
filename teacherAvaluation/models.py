@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Degree(models.Model):
-	idDegree = models.TextField(primary_key=True, max_length=10)
+#	idDegree = models.TextField(primary_key=True, max_length=10)
+	idDegree = models.IntegerField(primary_key=True)
 	name = models.CharField(max_length=25)
 	faculty	 = models.CharField(max_length=25)
 	numberOfCredits = models.IntegerField()
@@ -15,7 +16,7 @@ class Degree(models.Model):
 
 
 class Teacher(models.Model):
-	idTeacher = models.TextField(primary_key=True, max_length=10)
+	idTeacher = models.IntegerField(primary_key=True)
 	name = models.CharField(max_length=25)
 	sexe = models.CharField(max_length=1)
 	nationality = models.CharField(max_length=25)
@@ -25,7 +26,7 @@ class Teacher(models.Model):
 
 
 class Subject(models.Model):
-	idSubject = models.TextField(primary_key=True, max_length=10)
+	idSubject = models.IntegerField(primary_key=True)
 	name = models.CharField(max_length=25)
 	numberOfCredits = models.IntegerField()
 	teacher = models.ForeignKey(Teacher)	
