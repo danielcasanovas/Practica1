@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Degree(models.Model):
-#	idDegree = models.TextField(primary_key=True, max_length=10)
 	idDegree = models.IntegerField(primary_key=True)
 	name = models.CharField(max_length=25)
 	faculty	 = models.CharField(max_length=25)

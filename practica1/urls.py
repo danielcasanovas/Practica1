@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, include, url 
-from django.conf import settings
 from teacherAvaluation.views import *
 from django.conf.urls.defaults import *
 
@@ -37,8 +36,4 @@ urlpatterns = patterns('',
     url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', logoutPage),
 )
-if settings.DEBUG and settings.STATIC_ROOT:
-    urlpatterns += patterns('',
-        (r'%s(?P<path>.*)$' % settings.STATIC_URL.lstrip('/'), 
-            'django.views.static.serve',
-            {'document_root' : settings.STATIC_ROOT }),)
+

@@ -1,8 +1,6 @@
-from django.http import HttpResponse
 from django.template import Context , RequestContext
-from django.template.loader import get_template
 from django.shortcuts import render_to_response
-from django.contrib.auth import authenticate, logout,login
+from django.contrib.auth import logout 
 from teacherAvaluation.models import *
 from django.http import Http404
 
