@@ -1,8 +1,13 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context , RequestContext
-from django.shortcuts import render_to_response
-from django.contrib.auth import logout 
+from django.template.loader import get_template
+from django.shortcuts import render_to_response, render
+from django.contrib.auth import authenticate, logout,login
 from teacherAvaluation.models import *
 from django.http import Http404
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+
 
 
 def mainpage(request):
@@ -13,6 +18,25 @@ def mainpage(request):
 		})
 	context_instance = RequestContext(request)
 	return render_to_response('mainpage.html',variables,context_instance)
+
+
+def registration (request):
+	if request.method == 'POST':
+            form = UserCreationForm(request.POST)
+            if form.is_valid():
+              new_user = form.save()
+	      variables = Context({
+		'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+		'contentbody': 'Registre realitzat correctament.'
+		})
+              return render_to_response('mainpage.html',variables,context_instance = RequestContext(request))
+        else:
+            form = UserCreationForm()
+        return render(request, "registration/registration.html", {
+            'form': form,
+        })	
+
 
 def teacher(request):
 	listOfTeachers = Teacher.objects.all()
