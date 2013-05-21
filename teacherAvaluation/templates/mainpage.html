@@ -1,4 +1,10 @@
 {% extends "templateBase.html" %}
 {% block content %}
 	{{ contentbody }}
+		{% if user.username %}
+			<p>
+			Afegir <a href="/evaluations/add/"><b>Evaluació</b>
+			</p>
+				
+		{% endif %}
 {% endblock %}

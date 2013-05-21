@@ -137,6 +137,19 @@ def evaluation(request):
 	context_instance = RequestContext(request)
 	return render_to_response('evaluation.html',variables,context_instance)
 
+def evaluation_add (request):
+	user_creator = request.user
+	if request.method == 'POST':
+            form = AddEvaluation(user_creator,request.POST)
+            if form.is_valid():
+              new_user = form.save()
+	      return HttpResponseRedirect('/evaluations/')
+        else:
+            form = AddEvaluation(user_creator)
+        return render(request, "evaluation_add.html", {
+            'form': form,
+        },context_instance = RequestContext(request))	
+
 def logoutPage(request):
 	logout(request)
 	variables = Context({

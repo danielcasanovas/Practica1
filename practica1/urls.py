@@ -25,6 +25,7 @@ urlpatterns = patterns('',
 
     # Evaluations:
     url(r'^evaluations/$', evaluation, name='evaluations'),
+    url(r'^evaluations/add/$', evaluation_add, name='add_evaluations'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
