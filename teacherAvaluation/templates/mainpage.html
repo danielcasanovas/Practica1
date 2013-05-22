@@ -3,7 +3,25 @@
 	{{ contentbody }}
 		{% if user.username %}
 			<p>
-			Afegir <a href="/evaluations/add/"><b>Evaluació</b>
+			Llista d'accions:
+			<ul>
+			<b>Afegir:</b>
+			<li>Afegir un nou <a href="/teachers/add/"><b>Professor</b></a></li>			
+			<li>Afegir una nova <a href="/subjects/add/"><b>Assignatura</b></a></li>
+			<li>Afegir una nova <a href="/degrees/add/"><b>Carrera</b></a></li>
+			<li>Realitzar una <a href="/evaluations/add/"><b>Evaluació</b></a></li>
+			<br>			
+			<b>Actualitzar:</b>
+			<li>Actualitzar un <a href="/teachers/add/"><b>Professor</b></a></li>			
+			<li>Actualitzar una <a href="/subjects/add/"><b>Assignatura</b></a></li>
+			<li>Actualitzar una <a href="/degrees/add/"><b>Carrera</b></a></li>
+			<li>Actualitzar una <a href="/evaluations/add/"><b>Evaluació</b></a></li>
+			<br>
+			<b>Eliminar:</b>
+			<li>Eliminar un <a href="/teachers/add/"><b>Professor</b></a></li>			
+			<li>Eliminar una <a href="/subjects/add/"><b>Assignatura</b></a></li>
+			<li>Eliminar una <a href="/degrees/add/"><b>Carrera</b></a></li>
+			<li>Eliminar una <a href="/evaluations/add/"><b>Evaluació</b></a></li>
 			</p>
 				
 		{% endif %}
