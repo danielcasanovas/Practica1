@@ -142,12 +142,52 @@ def evaluation_add (request):
 	if request.method == 'POST':
             form = AddEvaluation(request.POST)
             if form.is_valid():
-              new_user = form.save()
+              new_evaluation = form.save()
 	      return HttpResponseRedirect('/evaluations/')
         else:
             form = AddEvaluation
         return render(request, "evaluation_add.html", {
-            'form': form,
+            'form': form,'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+        },context_instance = RequestContext(request))	
+
+def degree_add (request):
+	if request.method == 'POST':
+            form = AddDegree(request.POST)
+            if form.is_valid():
+              new_degree = form.save()
+	      return HttpResponseRedirect('/degrees/')
+        else:
+            form = AddDegree
+        return render(request, "degree_add.html", {
+            'form': form,'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+        },context_instance = RequestContext(request))	
+
+def subject_add (request):
+	if request.method == 'POST':
+            form = AddSubject(request.POST)
+            if form.is_valid():
+              new_subject = form.save()
+	      return HttpResponseRedirect('/subjects/')
+        else:
+            form = AddSubject
+        return render(request, "subject_add.html", {
+            'form': form,'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+        },context_instance = RequestContext(request))	
+
+def teacher_add (request):
+	if request.method == 'POST':
+            form = AddTeacher(request.POST)
+            if form.is_valid():
+              new_teacher = form.save()
+	      return HttpResponseRedirect('/teachers/')
+        else:
+            form = AddTeacher
+        return render(request, "teacher_add.html", {
+            'form': form,'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
         },context_instance = RequestContext(request))	
 
 def personal_data(request):
