@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, logout,login
 from teacherAvaluation.models import *
 from django.http import Http404
 from django import forms
+from teacherAvaluation.forms import *
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -140,12 +141,12 @@ def evaluation(request):
 def evaluation_add (request):
 	user_creator = request.user
 	if request.method == 'POST':
-            form = AddEvaluation(user_creator,request.POST)
+            form = AddEvaluation(request.POST)
             if form.is_valid():
               new_user = form.save()
 	      return HttpResponseRedirect('/evaluations/')
         else:
-            form = AddEvaluation(user_creator)
+            form = AddEvaluation#(user_creator)
         return render(request, "evaluation_add.html", {
             'form': form,
         },context_instance = RequestContext(request))	
