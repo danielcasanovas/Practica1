@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context , RequestContext
 from django.template.loader import get_template
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render_to_response, render , get_object_or_404
 from django.contrib.auth import authenticate, logout,login
 from teacherAvaluation.models import *
 from django.http import Http404
@@ -60,7 +60,6 @@ def singular_teacher(request,teacher_id):
 			'pagetitle': 'Evaluacio de docencia',
 			'nameteacher': teacher.name,
 			'sex': teacher.sexe,
-
 			'nationality': teacher.nationality
 			})
 		context_instance = RequestContext(request)
@@ -188,6 +187,19 @@ def teacher_add (request):
         return render(request, "teacher_add.html", {
             'form': form,'titlehead': 'Teacher Avaluation',
 		'pagetitle': 'Evaluacio de docencia',
+        },context_instance = RequestContext(request))	
+
+def teacher_update (request,teacher_id):
+	teacher = get_object_or_404(Teacher,idTeacher=teacher_id)
+	form = AddTeacher(data = request.POST or None , instance=teacher)
+	if form.is_valid():
+          update_teacher = form.save()
+	  return HttpResponseRedirect('/teachers/')
+        else:
+	    form = AddTeacher
+	return render(request, "teacher_update.html", {
+            'form': form,'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia', 'nameteacher': teacher.name, 'sex': teacher.sexe,'nationality': teacher.nationality
         },context_instance = RequestContext(request))	
 
 def personal_data(request):

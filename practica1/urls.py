@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     # Teachers:
     url(r'^teachers/$', teacher, name='teachers'),
     url(r'^teachers/add/$', teacher_add, name='add_degree'),
+    url(r'^teachers/update/(?P<teacher_id>\w+)/$', teacher_update, name='update_degree'),
     url(r'^teachers/(?P<teacher_id>\w+)/$', singular_teacher),
     
     # Degrees:
