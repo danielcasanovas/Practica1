@@ -1,0 +1,9 @@
+{% extends "templateBase.html" %}
+{% block content %}
+<p>Nova Assignatura:</p>
+<form method="post" action="/subjects/add/">
+{% csrf_token %}
+        {{ form.as_p }}</p>
+    <input type="submit" value="Create" />
+</form>
+{% endblock %}

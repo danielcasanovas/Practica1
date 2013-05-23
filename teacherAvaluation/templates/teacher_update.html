@@ -1,0 +1,13 @@
+{% extends "templateBase.html" %}
+{% block content %}
+<p>Professor:</p>
+<form method="post" action="/teachers/update/{{idteacher}}/">
+{% csrf_token %}
+    <p>
+    Name : <input type="text" value="{{ nameteacher }}" name="name"/><p>
+    Sex : <input type="text" value="{{ sex }}" name="sexe"/><p>
+    Nationality : <input type="text" value="{{ nationality }}" name="nationality"/><p>
+    <input type="submit" value="Actualitzar"/> <input type="button" value="Torna enrrere" onclick="history.back()"/>
+</form>
+<i><b>{{ contentbody }}</b></i>
+{% endblock %}

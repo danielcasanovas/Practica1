@@ -1,0 +1,9 @@
+{% extends "templateBase.html" %}
+{% block content %}
+<p>Nova Carrera:</p>
+<form method="post" action="/degrees/add/">
+{% csrf_token %}
+        {{ form.as_p }}</p>
+    <input type="submit" value="Crear" /><input type="button" value="Torna enrrere" onclick="history.back()"/>
+</form>
+{% endblock %}

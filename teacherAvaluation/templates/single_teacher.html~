@@ -1,0 +1,16 @@
+{% extends "templateBase.html" %}
+{% block content %}
+<b><u>{{ contentbody }}</u></b>
+<br>
+<br>
+<u>Nom:</u> {{ nameteacher }}
+<br>
+<u>Sexe:</u> {{ sex }}
+<br>
+<u>Nacionalitat:</u> {{ nationality }}
+<br>
+<br>
+<a href="javascript:history.back()"> Tornar enrere </a>
+{% endblock %}
+
+
