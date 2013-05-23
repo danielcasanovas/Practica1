@@ -3,7 +3,7 @@
 	{{ contentbody }}
 		{% if user.username %}
 			<br><br>
-			Accions:
+			<b>Accions:</b>
 			<ul>
 			<li>Canviar <a href="/"><b>contrasenya</b></a>.</li>	
 			</ul>

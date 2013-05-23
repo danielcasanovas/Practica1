@@ -15,18 +15,22 @@ urlpatterns = patterns('',
     url(r'^teachers/$', teacher, name='teachers'),
     url(r'^teachers/add/$', teacher_add, name='add_teacher'),
     url(r'^teachers/edit/(?P<teacher_id>\w+)/$', teacher_edit, name='edit_teacher'),
-    url(r'^teachers/update/(?P<teacher_id>\w+)/$', teacher_update, name='edit_teacher'),
+    url(r'^teachers/update/(?P<teacher_id>\w+)/$', teacher_update, name='update_teacher'),
     url(r'^teachers/(?P<teacher_id>\w+)/$', singular_teacher),
     
     # Degrees:
     url(r'^degrees/$', degree, name='degrees'),
     url(r'^degrees/add/$', degree_add, name='add_degree'),
+    url(r'^degrees/edit/(?P<degree_id>\w+)/$', degree_edit, name='edit_degree'),
+    url(r'^degrees/update/(?P<degree_id>\w+)/$', degree_update, name='update_degree'),
     url(r'^degrees/(?P<degree_id>\w+)/$', singular_degree ),
     
 
     # Subjects:
     url(r'^subjects/$', subject, name='subjects'),
-    url(r'^subjects/add/$', subject_add, name='add_subjects'),    
+    url(r'^subjects/add/$', subject_add, name='add_subjects'), 
+    url(r'^subjects/edit/(?P<subject_id>\w+)/$', subject_edit, name='edit_subject'),
+    url(r'^subjects/update/(?P<subject_id>\w+)/$', subject_update, name='edit_subject'),   
     url(r'^subjects/(?P<subject_id>\w+)/$', singular_subject ),
     
 
@@ -45,5 +49,7 @@ urlpatterns = patterns('',
     url(r'^logout/$', logoutPage),
     url(r'^registration/$', registration),
     url(r'^personalData/$', personal_data),
+    url(r'^personalData/pwd/$', personal_data_changepsword_edit),
+    url(r'^personalData/update/$', personal_data_changepsword_update),
 )
 

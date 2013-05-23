@@ -9,8 +9,6 @@ from django import forms
 from teacherAvaluation.forms import *
 from django.contrib.auth.forms import UserCreationForm
 
-
-
 def mainpage(request):
 	variables = Context({
 		'titlehead': 'Teacher Avaluation',
@@ -67,115 +65,6 @@ def singular_teacher(request,teacher_id):
 		raise Http404
 	return render_to_response('single_teacher.html',variables,context_instance)
 
-
-def degree(request):
-	listOfDegrees = Degree.objects.all()
-	variables = Context({
-		'titlehead': 'Teacher Avaluation',
-		'pagetitle': 'Evaluacio de docencia',
-		'contentbody': 'Llistat de Carreres:',
-		'degrees_list' : listOfDegrees
-		})
-	context_instance = RequestContext(request)
-	return render_to_response('degrees.html',variables,context_instance)
-
-def singular_degree(request,degree_id):
-	
-	try:
-		degree = Degree.objects.get(idDegree=degree_id)
-		variables = Context({
-			'contentbody': 'Detalls Carrera:',
-			'titlehead': 'Teacher Avaluation',
-			'pagetitle': 'Evaluacio de docencia',
-			'namedegree': degree.name,
-			'faculty': degree.faculty,
-			'credits': degree.numberOfCredits,
-			'years': degree.numberOfAcademicYears
-			})
-		context_instance = RequestContext(request)
-	except:
-		raise Http404
-	return render_to_response('single_degree.html',variables,context_instance)
-
-def subject(request):
-	listOfSubjects = Subject.objects.all()
-	variables = Context({
-		'titlehead': 'Teacher Avaluation',
-		'pagetitle': 'Evaluacio de docencia',
-		'contentbody': 'Llistat de Assignatures:',
-		'subjects_list' : listOfSubjects
-		})
-	context_instance = RequestContext(request)
-	return render_to_response('subjects.html',variables,context_instance)
-
-def singular_subject(request,subject_id):
-	
-	try:
-		subject = Subject.objects.get(idSubject=subject_id)
-		variables = Context({
-			'contentbody': 'Detalls assignatura:',
-			'titlehead': 'Teacher Avaluation',
-			'pagetitle': 'Evaluacio de docencia',
-			'namesubject': subject.name,
-			'teacher': subject.teacher,
-			'credits': subject.numberOfCredits,
-			'degree': subject.degree
-			})
-		context_instance=RequestContext(request)
-	except:
-		raise Http404
-	return render_to_response('single_subject.html',variables,context_instance)
-
-def evaluation(request):
-	listOfEvaluation = Evaluation.objects.all()
-	variables = Context({
-		'titlehead': 'Teacher Avaluation',
-		'pagetitle': 'Evaluacio de docencia',
-		'contentbody': 'Llistat de Evaluacions - Professors:',
-		'evaluation_list' : listOfEvaluation
-		})
-	context_instance = RequestContext(request)
-	return render_to_response('evaluation.html',variables,context_instance)
-
-def evaluation_add (request):
-	if request.method == 'POST':
-            form = AddEvaluation(request.POST)
-            if form.is_valid():
-              new_evaluation = form.save()
-	      return HttpResponseRedirect('/evaluations/')
-        else:
-            form = AddEvaluation
-        return render(request, "evaluation_add.html", {
-            'form': form,'titlehead': 'Teacher Avaluation',
-		'pagetitle': 'Evaluacio de docencia',
-        },context_instance = RequestContext(request))	
-
-def degree_add (request):
-	if request.method == 'POST':
-            form = AddDegree(request.POST)
-            if form.is_valid():
-              new_degree = form.save()
-	      return HttpResponseRedirect('/degrees/')
-        else:
-            form = AddDegree
-        return render(request, "degree_add.html", {
-            'form': form,'titlehead': 'Teacher Avaluation',
-		'pagetitle': 'Evaluacio de docencia',
-        },context_instance = RequestContext(request))	
-
-def subject_add (request):
-	if request.method == 'POST':
-            form = AddSubject(request.POST)
-            if form.is_valid():
-              new_subject = form.save()
-	      return HttpResponseRedirect('/subjects/')
-        else:
-            form = AddSubject
-        return render(request, "subject_add.html", {
-            'form': form,'titlehead': 'Teacher Avaluation',
-		'pagetitle': 'Evaluacio de docencia',
-        },context_instance = RequestContext(request))	
-
 def teacher_add (request):
 	if request.method == 'POST':
             form = AddTeacher(request.POST)
@@ -216,7 +105,180 @@ def teacher_update (request,teacher_id):
 		'sex': teacher.sexe,
 		'nationality': teacher.nationality
 		})
-	return render(request, "teacher_update.html",variables,context_instance = RequestContext(request))		
+	return render(request, "teacher_update.html",variables,context_instance = RequestContext(request))	
+
+def degree(request):
+	listOfDegrees = Degree.objects.all()
+	variables = Context({
+		'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+		'contentbody': 'Llistat de Carreres:',
+		'degrees_list' : listOfDegrees
+		})
+	context_instance = RequestContext(request)
+	return render_to_response('degrees.html',variables,context_instance)
+
+def singular_degree(request,degree_id):
+	
+	try:
+		degree = Degree.objects.get(idDegree=degree_id)
+		variables = Context({
+			'contentbody': 'Detalls Carrera:',
+			'titlehead': 'Teacher Avaluation',
+			'pagetitle': 'Evaluacio de docencia',
+			'namedegree': degree.name,
+			'faculty': degree.faculty,
+			'credits': degree.numberOfCredits,
+			'years': degree.numberOfAcademicYears
+			})
+		context_instance = RequestContext(request)
+	except:
+		raise Http404
+	return render_to_response('single_degree.html',variables,context_instance)
+
+def degree_add (request):
+	if request.method == 'POST':
+            form = AddDegree(request.POST)
+            if form.is_valid():
+              new_degree = form.save()
+	      return HttpResponseRedirect('/degrees/')
+        else:
+            form = AddDegree
+        return render(request, "degree_add.html", {
+            'form': form,'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+        },context_instance = RequestContext(request))	
+
+def degree_edit (request,degree_id):
+	degree = get_object_or_404(Degree,idDegree=degree_id)
+	variables = Context({
+		'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+		'iddegree': degree.idDegree, 
+		'namedegree': degree.name,
+		'faculty': degree.faculty,
+		'numberofcredits': degree.numberOfCredits,
+		'numberofacademicyears': degree.numberOfAcademicYears
+		})
+	return render(request, "degree_update.html",variables,context_instance = RequestContext(request))	
+
+def degree_update (request,degree_id):
+	degree = get_object_or_404(Degree,idDegree=degree_id)
+	degree.name = request.POST["name"]
+	degree.faculty = request.POST["faculty"]
+	degree.numberOfCredits = request.POST["numberofcredits"]
+	degree.numberOfAcademicYears = request.POST["numberofacademicyears"]
+	degree.save()
+	variables = Context({
+		'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+		'contentbody': 'Carrera actualitzada',
+		'iddegree': degree.idDegree, 
+		'namedegree': degree.name,
+		'faculty': degree.faculty,
+		'numberofcredits': degree.numberOfCredits,
+		'numberofacademicyears': degree.numberOfAcademicYears
+		})
+	return render(request, "degree_update.html",variables,context_instance = RequestContext(request))
+
+def subject(request):
+	listOfSubjects = Subject.objects.all()
+	variables = Context({
+		'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+		'contentbody': 'Llistat de Assignatures:',
+		'subjects_list' : listOfSubjects
+		})
+	context_instance = RequestContext(request)
+	return render_to_response('subjects.html',variables,context_instance)
+
+def singular_subject(request,subject_id):
+	
+	try:
+		subject = Subject.objects.get(idSubject=subject_id)
+		variables = Context({
+			'contentbody': 'Detalls assignatura:',
+			'titlehead': 'Teacher Avaluation',
+			'pagetitle': 'Evaluacio de docencia',
+			'namesubject': subject.name,
+			'teacher': subject.teacher,
+			'credits': subject.numberOfCredits,
+			'degree': subject.degree
+			})
+		context_instance=RequestContext(request)
+	except:
+		raise Http404
+	return render_to_response('single_subject.html',variables,context_instance)
+
+def subject_add (request):
+	if request.method == 'POST':
+            form = AddSubject(request.POST)
+            if form.is_valid():
+              new_subject = form.save()
+	      return HttpResponseRedirect('/subjects/')
+        else:
+            form = AddSubject
+        return render(request, "subject_add.html", {
+            'form': form,'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+        },context_instance = RequestContext(request))	
+
+def subject_edit (request,subject_id):
+	subject = get_object_or_404(Subject,idSubject=subject_id)
+	form = EditSubject()
+	variables = Context({
+		'form': form,
+		'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+		'idsubject': subject.idSubject, 
+		'namesubject': subject.name, 
+		'numberofcredits': subject.numberOfCredits,
+		'teacher': subject.teacher,
+                'degree': subject.degree,
+		})
+	return render(request, "subject_update.html",variables,context_instance = RequestContext(request))
+
+def subject_update (request,subject_id):
+	subject = get_object_or_404(Subject,idSubject=subject_id)
+	subject.name = request.POST["name"]
+	subject.numberOfCredits = request.POST["numberofcredits"]
+	subject.teacher = request.POST["teacher"]
+        subject.degree = request.POST["degree"]
+	subject.save()
+	variables = Context({
+		'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+		'idsubject': subject.idSubject, 
+		'namesubject': subject.name, 
+		'numberofcredits': subject.numberOfCredits,
+		'teacher': subject.teacher,
+                'degree': subject.degree,
+		})
+	return render(request, "subject_update.html",variables,context_instance = RequestContext(request))
+
+def evaluation(request):
+	listOfEvaluation = Evaluation.objects.all()
+	variables = Context({
+		'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+		'contentbody': 'Llistat de Evaluacions - Professors:',
+		'evaluation_list' : listOfEvaluation
+		})
+	context_instance = RequestContext(request)
+	return render_to_response('evaluation.html',variables,context_instance)
+
+def evaluation_add (request):
+	if request.method == 'POST':
+            form = AddEvaluation(request.POST)
+            if form.is_valid():
+              new_evaluation = form.save()
+	      return HttpResponseRedirect('/evaluations/')
+        else:
+            form = AddEvaluation
+        return render(request, "evaluation_add.html", {
+            'form': form,'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+        },context_instance = RequestContext(request))	
 
 def personal_data(request):
 	variables = Context({
@@ -226,6 +288,26 @@ def personal_data(request):
 		})
 	context_instance = RequestContext(request)
 	return render_to_response('personal_data.html',variables,context_instance)
+
+def personal_data_changepsword_edit(request):
+	variables = Context({
+		'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+		})
+	context_instance = RequestContext(request)
+	return render_to_response('personal_data_edit.html',variables,context_instance)
+
+def personal_data_changepsword_update(request):
+	user = User.objects.get(username = request.user)
+	user.set_password(request.POST["pwd"])
+	user.save()
+	variables = Context({
+		'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+		'contentbody': 'Contrasenya canviada.',
+		})
+	context_instance = RequestContext(request)
+	return render_to_response('personal_data_edit.html',variables,context_instance)
 
 def logoutPage(request):
 	logout(request)

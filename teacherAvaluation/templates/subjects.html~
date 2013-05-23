@@ -5,7 +5,7 @@
 	
 	{% for i in subjects_list %}
 <br>
-	ID: {{ i.idDegree }} - Nom :  <a href="/subjects/{{ i.idSubject }}"> {{ i.name }} </a>
+	ID: {{ i.idSubject }} - Nom :  <a href="/subjects/{{ i.idSubject }}"> {{ i.name }} </a>
 
 	
 	{% endfor %}
