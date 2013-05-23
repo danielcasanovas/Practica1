@@ -191,16 +191,24 @@ def teacher_add (request):
 
 def teacher_update (request,teacher_id):
 	teacher = get_object_or_404(Teacher,idTeacher=teacher_id)
-	form = AddTeacher(data = request.POST or None , instance=teacher)
-	if form.is_valid():
-          update_teacher = form.save()
-	  return HttpResponseRedirect('/teachers/')
-        else:
-	    form = AddTeacher
-	return render(request, "teacher_update.html", {
-            'form': form,'titlehead': 'Teacher Avaluation',
-		'pagetitle': 'Evaluacio de docencia', 'nameteacher': teacher.name, 'sex': teacher.sexe,'nationality': teacher.nationality
-        },context_instance = RequestContext(request))	
+	form = AddTeacher(request.POST,instance=teacher)
+	if request.method == 'POST':	
+          if form.is_valid():
+	    teacher.nationality = request.POST["nationality"]
+            #update_teacher = form.save()
+	    teacher.save()
+	    return HttpResponseRedirect('/teachers/')
+	variables = Context({
+		'form': form,
+		'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+		'contentbody': 'Menu Personal:',
+		'idteacher': teacher.idTeacher, 
+		'nameteacher': teacher.name, 
+		'sex': teacher.sexe,
+		'nationality': teacher.nationality
+		})
+	return render(request, "teacher_update.html",variables,context_instance = RequestContext(request))	
 
 def personal_data(request):
 	variables = Context({
