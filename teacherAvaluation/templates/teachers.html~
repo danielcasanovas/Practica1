@@ -7,7 +7,8 @@
 <br>
 	ID: {{ i.idTeacher }} - Nom :  <a href="/teachers/{{ i.idTeacher }}"> {{ i.name }} </a> 
 {% if user.username %}
-<input type="button" value="Editar" onclick="window.location.href='/teachers/update/{{ i.idTeacher }}'"/>
+<input type="button" value="Editar" onclick="window.location.href='/teachers/edit/{{ i.idTeacher }}'"/> 
+<input type="button" value="Eliminar" onclick="window.location.href='/teachers/'"/> 
 {% endif %}
 
 

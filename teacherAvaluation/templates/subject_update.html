@@ -1,0 +1,15 @@
+{% extends "templateBase.html" %}
+{% block content %}
+<p>Assignatura:</p>
+<form method="post" action="/subjects/update/{{idsubject}}/">
+{% csrf_token %}
+    <p>
+    <!--{ form.as_p-->
+    Name : <input type="text" value="{{ namesubject }}" name="name"/><p>
+    NumberOfCredits : <input type="text" value="{{ numberofcredits }}" name="numberofcredits"/><p>
+    Teacher : <input type="text" value="{{ teacher }}" name="teacher"/><p>
+    Degree : <input type="text" value="{{ degree }}" name="degree"/><p>
+    <input type="submit" value="Actualitzar"/> <input type="button" value="Torna enrrere" onclick="history.back()"/>   
+</form>
+<i><b>{{ contentbody }}</b></i>
+{% endblock %}

@@ -107,6 +107,11 @@ def teacher_update (request,teacher_id):
 		})
 	return render(request, "teacher_update.html",variables,context_instance = RequestContext(request))	
 
+def teacher_delete(request,teacher_id):
+	teacher=get_object_or_404(Teacher,idTeacher=teacher_id)
+	teacher.delete()
+	return render(request, "teachers.html",context_instance = RequestContext(request))
+
 def degree(request):
 	listOfDegrees = Degree.objects.all()
 	variables = Context({
@@ -225,9 +230,7 @@ def subject_add (request):
 
 def subject_edit (request,subject_id):
 	subject = get_object_or_404(Subject,idSubject=subject_id)
-	form = EditSubject()
 	variables = Context({
-		'form': form,
 		'titlehead': 'Teacher Avaluation',
 		'pagetitle': 'Evaluacio de docencia',
 		'idsubject': subject.idSubject, 

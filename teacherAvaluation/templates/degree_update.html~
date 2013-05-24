@@ -1,0 +1,16 @@
+{% extends "templateBase.html" %}
+{% block content %}
+<p>Carrera:</p>
+<form method="post" action="/degrees/update/{{iddegree}}/">
+{% csrf_token %}
+    <p>
+    Name : <input type="text" value="{{ namedegree }}" name="name"/><p>
+    Faculty : <input type="text" value="{{ faculty }}" name="faculty"/><p>
+    Number of credits : <input type="text" value="{{ numberofcredits }}" name="numberofcredits"/><p>
+    Number of academic years : <input type="text" value="{{ numberofacademicyears }}" name="numberofacademicyears"/><p>
+    <input type="submit" value="Actualitzar"/> <input type="button" value="Torna enrrere" onclick="history.back()"/>
+</form>
+<i><b>{{ contentbody }}</b></i>
+{% endblock %}
+
+
