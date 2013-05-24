@@ -80,32 +80,32 @@ def teacher_add (request):
 
 def teacher_edit (request,teacher_id):
 	teacher = get_object_or_404(Teacher,idTeacher=teacher_id)
+ 	form = UpdateTeacher(instance=teacher)
 	variables = Context({
+		'form' : form,
+		'idteacher' : teacher.idTeacher,
 		'titlehead': 'Teacher Avaluation',
 		'pagetitle': 'Evaluacio de docencia',
-		'idteacher': teacher.idTeacher, 
-		'nameteacher': teacher.name, 
-		'sex': teacher.sexe,
-		'nationality': teacher.nationality
 		})
-	return render(request, "teacher_update.html",variables,context_instance = RequestContext(request))	
+	return render(request, "teacher_update.html",variables,context_instance = RequestContext(request))
+
 
 def teacher_update (request,teacher_id):
 	teacher = get_object_or_404(Teacher,idTeacher=teacher_id)
-	teacher.name = request.POST["name"]
-	teacher.sexe = request.POST["sexe"]
-	teacher.nationality = request.POST["nationality"]
-	teacher.save()
+	if request.method == 'POST':
+            form = UpdateTeacher(request.POST)
+	    form.instance.idTeacher=teacher_id
+            if form.is_valid():
+              form.save()
 	variables = Context({
+		'form' : form,
 		'titlehead': 'Teacher Avaluation',
 		'pagetitle': 'Evaluacio de docencia',
-		'contentbody': 'Professor actualitzat',
 		'idteacher': teacher.idTeacher, 
-		'nameteacher': teacher.name, 
-		'sex': teacher.sexe,
-		'nationality': teacher.nationality
+		'contentbody': 'Professor actualitzat',
 		})
-	return render(request, "teacher_update.html",variables,context_instance = RequestContext(request))	
+	return render(request, "teacher_update.html",variables,context_instance = RequestContext(request))
+
 
 def teacher_delete(request,teacher_id):
 	teacher=get_object_or_404(Teacher,idTeacher=teacher_id)
@@ -124,7 +124,6 @@ def degree(request):
 	return render_to_response('degrees.html',variables,context_instance)
 
 def singular_degree(request,degree_id):
-	
 	try:
 		degree = Degree.objects.get(idDegree=degree_id)
 		variables = Context({
@@ -257,7 +256,7 @@ def subject_update (request,subject_id):
 		'titlehead': 'Teacher Avaluation',
 		'pagetitle': 'Evaluacio de docencia',
 		'idsubject' : subject.idSubject,
-		'contentbody': 'Carrera actualitzada',
+		'contentbody': 'Assignatura actualitzada',
 		})
 	return render(request, "subject_update.html",variables,context_instance = RequestContext(request))
 
@@ -271,7 +270,7 @@ def evaluation(request):
 	variables = Context({
 		'titlehead': 'Teacher Avaluation',
 		'pagetitle': 'Evaluacio de docencia',
-		'contentbody': 'Llistat de Evaluacions - Professors:',
+		'contentbody': 'Llistat de Evaluacions:',
 		'evaluation_list' : listOfEvaluation
 		})
 	context_instance = RequestContext(request)
@@ -289,6 +288,38 @@ def evaluation_add (request):
             'form': form,'titlehead': 'Teacher Avaluation',
 		'pagetitle': 'Evaluacio de docencia',
         },context_instance = RequestContext(request))	
+
+def evaluation_edit (request,evaluation_id):
+	evaluation=get_object_or_404(Evaluation,id=evaluation_id)
+ 	form = UpdateEvaluation(instance=evaluation)
+	variables = Context({
+		'form' : form,
+		'idevaluation' : evaluation.id,
+		'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+		})
+	return render(request, "evaluation_update.html",variables,context_instance = RequestContext(request))
+
+def evaluation_update (request,evaluation_id):
+	evaluation=get_object_or_404(Evaluation,id=evaluation_id)
+	if request.method == 'POST':
+	    form = UpdateEvaluation(request.POST)
+	    form.instance.id=evaluation_id
+            if form.is_valid():
+              form.save()
+	variables = Context({
+		'form' : form,
+		'titlehead': 'Teacher Avaluation',
+		'pagetitle': 'Evaluacio de docencia',
+		'idevaluation' : evaluation.id,
+		'contentbody': 'Evaluacio actualitzada',
+		})
+	return render(request, "evaluation_update.html",variables,context_instance = RequestContext(request))
+
+def evaluation_delete(request,evaluation_id):
+	degree=get_object_or_404(Evaluation,id=evaluation_id)
+        degree.delete()
+	return HttpResponseRedirect('/evaluations/')
 
 def personal_data(request):
 	variables = Context({

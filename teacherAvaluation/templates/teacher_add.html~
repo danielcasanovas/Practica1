@@ -1,7 +1,45 @@
 {% extends "templateBase.html" %}
+{% load staticfiles %}
 {% block content %}
-<p>Nova Professor:</p>
-<form method="post" action="/teachers/add/">
+<p>Nou Professor:</p>
+<script>
+        $(function() {
+            $.getJSON("{% static "countries.json" %}", {}, function (countries) {
+                $("#id_name").autocomplete({
+                    source: countries
+                });
+            });
+
+            $("#id_nationality").autocomplete({
+                source: function( request, response ) {
+                    $.ajax({
+                        url: "http://ws.geonames.org/searchJSON",
+                        dataType: "jsonp",
+                        data: {
+                            featureClass: "P",
+                            maxRows: 10,
+                            name_startsWith: request.term
+                        },
+                        success: function( data ) {
+                            response( $.map( data.geonames, function( item ) {
+                                return {
+                                    label: item.countryName,
+                                    value: item.countryName,
+                                }
+                            }));
+                        }
+                    });
+                },
+                minLength: 1,
+                select: function( event, ui ) {
+                    if (ui.item) {
+                        $("#id_country").val(ui.item.countryName);
+                    }
+                }
+            });
+        });
+</script>
+<form method="post" action="/teachers/add/" enctype="multipart/form-data">
 {% csrf_token %}
         {{ form.as_p }}</p>
     <input type="submit" value="Crear" /><input type="button" value="Torna enrrere" onclick="history.back()"/>

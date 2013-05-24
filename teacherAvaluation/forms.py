@@ -22,3 +22,13 @@ class UpdateSubject(ModelForm):
 	class Meta:
 		model = Subject
 		exclude = ('idSubject')
+
+class UpdateTeacher(ModelForm):
+	class Meta:
+		model = Teacher
+		exclude = ('idTeacher')
+
+class UpdateEvaluation(ModelForm):
+	class Meta:
+		model = Evaluation
+		exclude = ('id','teacher','subject',)

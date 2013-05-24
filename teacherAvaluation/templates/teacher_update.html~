@@ -1,12 +1,23 @@
 {% extends "templateBase.html" %}
+{% load staticfiles %}
 {% block content %}
 <p>Professor:</p>
-<form method="post" action="/teachers/update/{{idteacher}}/">
+<script>
+	$(function() {
+		$.getJSON("{% static "countries.json" %}", {}, function (countries) {
+			$("#id_nationality").autocomplete({
+				source: countries
+			});
+		});
+	});	
+</script>
+<form method="post" action="/teachers/update/{{idteacher}}/" enctype="multipart/form-data">
 {% csrf_token %}
     <p>
-    Name : <input type="text" value="{{ nameteacher }}" name="name"/><p>
+    {{ form.as_p }}
+  <!--  Name : <input type="text" value="{{ nameteacher }}" name="name"/><p>
     Sex : <input type="text" value="{{ sex }}" name="sexe"/><p>
-    Nationality : <input type="text" value="{{ nationality }}" name="nationality"/><p>
+    Nationality : <input type="text" value="{{ nationality }}" name="nationality"/><p>-->
     <input type="submit" value="Actualitzar"/> <input type="button" value="Torna enrrere" onclick="history.back()"/>
 </form>
 <i><b>{{ contentbody }}</b></i>

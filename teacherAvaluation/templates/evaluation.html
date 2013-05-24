@@ -2,11 +2,27 @@
 {% block content %}
 <b><u>{{ contentbody }}</u></b>
 <br>
+<table style="background-color:#CEE3F6" width="100%" cellpadding="3" cellspacing="3">	
+<tr>
+		<td><b>Professor</b></td>
+		<td><b>Assignatura</b></td>
+		<td><b>Evaluació</b></td>
 	
+	</tr>
 	{% for i in evaluation_list %}
-<br>
-	<u>Professor:</u> <a href="/teachers/{{ i.teacher.idTeacher }}"> {{ i.teacher }} </a> - <u>Assignatura</u> : <a href="/subjects/{{ i.subject.idSubject }}"> {{ i.subject }} </a> - <u>Evaluacio</u> : {{ i.numericEvaluation }}
-
+	<tr>
+		<td><a href="/teachers/{{ i.teacher.idTeacher }}"> {{ i.teacher }} </a></td>
+		<td><a href="/subjects/{{ i.subject.idSubject }}"> {{ i.subject }} </a></td>
+		<td align="center">{{ i.numericEvaluation }}</td>
+		<td><input type="button" value="Editar" onclick="window.location.href='/evaluations/edit/{{ i.id }}'"/></td>
+		<td><input type="button" value="Eliminar" onclick="window.location.href='/evaluations/delete/{{ i.id }}'"/></td>
+	</tr>
 	
 	{% endfor %}
+</table>
 {% endblock %}
+
+
+
+
+
