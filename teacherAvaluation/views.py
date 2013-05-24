@@ -110,7 +110,7 @@ def teacher_update (request,teacher_id):
 def teacher_delete(request,teacher_id):
 	teacher=get_object_or_404(Teacher,idTeacher=teacher_id)
 	teacher.delete()
-	return render(request, "teachers.html",context_instance = RequestContext(request))
+	return HttpResponseRedirect('/teachers/')
 
 def degree(request):
 	listOfDegrees = Degree.objects.all()
@@ -186,6 +186,12 @@ def degree_update (request,degree_id):
 		})
 	return render(request, "degree_update.html",variables,context_instance = RequestContext(request))
 
+def degree_delete(request,degree_id):
+	degree=get_object_or_404(Degree,idDegree=degree_id)
+        degree.delete()
+	return HttpResponseRedirect('/degrees/')
+
+
 def subject(request):
 	listOfSubjects = Subject.objects.all()
 	variables = Context({
@@ -230,34 +236,35 @@ def subject_add (request):
 
 def subject_edit (request,subject_id):
 	subject = get_object_or_404(Subject,idSubject=subject_id)
+ 	form = UpdateSubject(instance=subject)
 	variables = Context({
+		'form' : form,
+		'idsubject' : subject.idSubject,
 		'titlehead': 'Teacher Avaluation',
 		'pagetitle': 'Evaluacio de docencia',
-		'idsubject': subject.idSubject, 
-		'namesubject': subject.name, 
-		'numberofcredits': subject.numberOfCredits,
-		'teacher': subject.teacher,
-                'degree': subject.degree,
 		})
 	return render(request, "subject_update.html",variables,context_instance = RequestContext(request))
 
 def subject_update (request,subject_id):
 	subject = get_object_or_404(Subject,idSubject=subject_id)
-	subject.name = request.POST["name"]
-	subject.numberOfCredits = request.POST["numberofcredits"]
-	subject.teacher = request.POST["teacher"]
-        subject.degree = request.POST["degree"]
-	subject.save()
+	if request.method == 'POST':
+            form = UpdateSubject(request.POST)
+	    form.instance.idSubject=subject_id
+            if form.is_valid():
+              form.save()
 	variables = Context({
+		'form' : form,
 		'titlehead': 'Teacher Avaluation',
 		'pagetitle': 'Evaluacio de docencia',
-		'idsubject': subject.idSubject, 
-		'namesubject': subject.name, 
-		'numberofcredits': subject.numberOfCredits,
-		'teacher': subject.teacher,
-                'degree': subject.degree,
+		'idsubject' : subject.idSubject,
+		'contentbody': 'Carrera actualitzada',
 		})
 	return render(request, "subject_update.html",variables,context_instance = RequestContext(request))
+
+def subject_delete(request,subject_id):
+	subject=get_object_or_404(Subject,idSubject=subject_id)
+        subject.delete()
+	return HttpResponseRedirect('/subjects/')
 
 def evaluation(request):
 	listOfEvaluation = Evaluation.objects.all()

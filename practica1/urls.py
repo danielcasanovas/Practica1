@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     url(r'^degrees/add/$', degree_add, name='add_degree'),
     url(r'^degrees/edit/(?P<degree_id>\w+)/$', degree_edit, name='edit_degree'),
     url(r'^degrees/update/(?P<degree_id>\w+)/$', degree_update, name='update_degree'),
+    url(r'^degrees/delete/(?P<degree_id>\w+)/$', degree_delete, name='delete_degree'),
     url(r'^degrees/(?P<degree_id>\w+)/$', singular_degree ),
     
 
@@ -31,7 +32,8 @@ urlpatterns = patterns('',
     url(r'^subjects/$', subject, name='subjects'),
     url(r'^subjects/add/$', subject_add, name='add_subjects'), 
     url(r'^subjects/edit/(?P<subject_id>\w+)/$', subject_edit, name='edit_subject'),
-    url(r'^subjects/update/(?P<subject_id>\w+)/$', subject_update, name='edit_subject'),   
+    url(r'^subjects/update/(?P<subject_id>\w+)/$', subject_update, name='update_subject'),   
+    url(r'^subjects/delete/(?P<subject_id>\w+)/$', subject_delete, name='delete_subject'),
     url(r'^subjects/(?P<subject_id>\w+)/$', singular_subject ),
     
 

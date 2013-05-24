@@ -12,10 +12,10 @@
 			<li>Realitzar una <a href="/evaluations/add/"><b>Evaluació</b></a></li>
 			<br>			
 			<b>Actualitzar:</b>
-			<li>Actualitzar un <a href="/teachers/update/"><b>Professor</b></a></li>			
-			<li>Actualitzar una <a href="/subjects/update/"><b>Assignatura</b></a></li>
-			<li>Actualitzar una <a href="/degrees/update/"><b>Carrera</b></a></li>
-			<li>Actualitzar una <a href="/evaluations/update/"><b>Evaluació</b></a></li>
+			<li>Actualitzar un <a href="/teachers/"><b>Professor</b></a></li>			
+			<li>Actualitzar una <a href="/subjects/"><b>Assignatura</b></a></li>
+			<li>Actualitzar una <a href="/degrees/"><b>Carrera</b></a></li>
+			<li>Actualitzar una <a href="/evaluations/"><b>Evaluació</b></a></li>
 			<br>
 			<b>Eliminar:</b>
 			<li>Eliminar un <a href="/teachers/add/"><b>Professor</b></a></li>			
