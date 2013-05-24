@@ -2,12 +2,11 @@
 
 {% block content %}
 <p>Nova Contrasenya:</p>
-<script type=”text/javascript”>
+<script>
 function validar() {
     	clave1 = document.getElementById('pwd').value;
    	clave2 = document.getElementById('pwd2').value;
    	if (clave1 == clave2){ 
-      	 alert("Las dos claves son iguales...\nRealizaríamos las acciones del caso positivo");
 	 return true;
 	}
    	else{
@@ -16,11 +15,11 @@ function validar() {
 	}
 }
 </script>
-<form method="post" name ="formulario" onSubmit = "javascript:validar();false" action="/personalData/update/">
+<form method="post" name ="formulario" onSubmit = "return validar()" action="/personalData/update/">
 {% csrf_token %}
     <p>
-    Introdueix Nova Contrasenya: <input type="password" name="pwd"/><p>
-    Torna a introduir la nova contrasenya: <input type="password" name="pwd2"/><p>
+    Introdueix Nova Contrasenya: <input type="password" name="pwd" id="pwd"/><p>
+    Torna a introduir la nova contrasenya: <input type="password" name="pwd2" id="pwd2"/><p>
     <input type="submit" value="Actualitzar"/> <input type="button" value="Torna enrrere" onclick="history.back()"/>
 
 
