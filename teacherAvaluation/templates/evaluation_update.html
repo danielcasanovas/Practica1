@@ -1,0 +1,13 @@
+{% extends "templateBase.html" %}
+{% block content %}
+<p>Evaluació:</p>
+<form method="post" action="/evaluations/update/{{idevaluation}}/">
+{% csrf_token %}
+    <p>
+   {{ form.as_p }}<p>
+    <input type="submit" value="Actualitzar"/> <input type="button" value="Torna enrrere" onclick="history.back()"/>
+</form>
+<i><b>{{ contentbody }}</b></i>
+{% endblock %}
+
+

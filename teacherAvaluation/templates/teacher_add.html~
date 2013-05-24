@@ -4,14 +4,14 @@
 <p>Nou Professor:</p>
 <script>
         $(function() {
-            $.getJSON("{% static "countries.json" %}", {}, function (countries) {
+            $.getJSON("{% static "name.json" %}", {}, function (names) {
                 $("#id_name").autocomplete({
-                    source: countries
+                    source: names
                 });
             });
 
             $("#id_nationality").autocomplete({
-                source: function( request, response ) {
+                     source: function( request, response ) {
                     $.ajax({
                         url: "http://ws.geonames.org/searchJSON",
                         dataType: "jsonp",
@@ -23,14 +23,15 @@
                         success: function( data ) {
                             response( $.map( data.geonames, function( item ) {
                                 return {
-                                    label: item.countryName,
+                                    label: item.name + item.countryName,
                                     value: item.countryName,
+                                    countryName: item.countryName
                                 }
                             }));
                         }
                     });
                 },
-                minLength: 1,
+                minLength: 2,
                 select: function( event, ui ) {
                     if (ui.item) {
                         $("#id_country").val(ui.item.countryName);
@@ -38,7 +39,7 @@
                 }
             });
         });
-</script>
+    </script>
 <form method="post" action="/teachers/add/" enctype="multipart/form-data">
 {% csrf_token %}
         {{ form.as_p }}</p>
