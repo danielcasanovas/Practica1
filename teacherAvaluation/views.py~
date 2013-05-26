@@ -306,7 +306,7 @@ def evaluation_update (request,evaluation_id):
 	    form = UpdateEvaluation(request.POST)
 	    form.instance.id=evaluation_id
 	    form.instance.teacher=evaluation.teacher
-	    form.instance.subject=evaluation.subject
+	    form.instance.subject=subject
             if form.is_valid():
               form.save()
 	variables = Context({

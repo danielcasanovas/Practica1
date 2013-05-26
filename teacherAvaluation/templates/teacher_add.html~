@@ -16,16 +16,15 @@
                         url: "http://ws.geonames.org/searchJSON",
                         dataType: "jsonp",
                         data: {
-                            featureClass: "P",
+                            featureClass: "A",
                             maxRows: 10,
                             name_startsWith: request.term
                         },
                         success: function( data ) {
                             response( $.map( data.geonames, function( item ) {
                                 return {
-                                    label: item.name + item.countryName,
-                                    value: item.countryName,
-                                    countryName: item.countryName
+                                    label: item.name,
+                                    value: item.name,
                                 }
                             }));
                         }

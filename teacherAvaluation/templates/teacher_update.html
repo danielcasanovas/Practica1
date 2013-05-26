@@ -3,14 +3,42 @@
 {% block content %}
 <p>Professor:</p>
 <script>
-	$(function() {
-		$.getJSON("{% static "countries.json" %}", {}, function (countries) {
-			$("#id_nationality").autocomplete({
-				source: countries
-			});
-		});
-	});	
-</script>
+        $(function() {
+            $.getJSON("{% static "name.json" %}", {}, function (names) {
+                $("#id_name").autocomplete({
+                    source: names
+                });
+            });
+
+            $("#id_nationality").autocomplete({
+                     source: function( request, response ) {
+                    $.ajax({
+                        url: "http://ws.geonames.org/searchJSON",
+                        dataType: "jsonp",
+                        data: {
+                            featureClass: "A",
+                            maxRows: 5,
+                            name_startsWith: request.term
+                        },
+                        success: function( data ) {
+                            response( $.map( data.geonames, function( item ) {
+                                return {
+                                    label: item.name,
+                                    value: item.name,
+                                }
+                            }));
+                        }
+                    });
+                },
+                minLength: 1,
+                select: function( event, ui ) {
+                    if (ui.item) {
+                        $("#id_country").val(ui.item.countryName);
+                    }
+                }
+            });
+        });
+    </script>
 <form method="post" action="/teachers/update/{{idteacher}}/" enctype="multipart/form-data">
 {% csrf_token %}
     <p>
