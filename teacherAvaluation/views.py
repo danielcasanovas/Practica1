@@ -279,6 +279,7 @@ def evaluation(request):
 def evaluation_add (request):
 	if request.method == 'POST':
             form = AddEvaluation(request.POST)
+	    form.instance.user=request.user
             if form.is_valid():
               new_evaluation = form.save()
 	      return HttpResponseRedirect('/evaluations/')
@@ -307,6 +308,7 @@ def evaluation_update (request,evaluation_id):
 	    form.instance.id=evaluation_id
 	    form.instance.teacher=evaluation.teacher
 	    form.instance.subject=evaluation.subject
+	    form.instance.user=request.user
             if form.is_valid():
               form.save()
 	variables = Context({

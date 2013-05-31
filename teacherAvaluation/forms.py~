@@ -5,6 +5,7 @@ from teacherAvaluation.models import *
 class AddEvaluation(ModelForm):
 	class Meta:
 		model = Evaluation
+		exclude = ('user')
 
 class AddSubject(ModelForm):
 	class Meta:
@@ -31,4 +32,4 @@ class UpdateTeacher(ModelForm):
 class UpdateEvaluation(ModelForm):
 	class Meta:
 		model = Evaluation
-		exclude = ('id','idTeacher','idSubject')
+		exclude = ('id','teacher','subject',)
