@@ -2,19 +2,21 @@
 {% block content %}
 <b><u>{{ contentbody }}</u></b>
 <br>
-	
-	{% for i in subjects_list %}
-<br>
-	ID: {{ i.idSubject }} - Nom :  <a href="/subjects/{{ i.idSubject }}"> {{ i.name }} </a>
-{% if user.username %}
-<input type="button" value="Editar" onclick="window.location.href='/subjects/edit/{{ i.idSubject }}'"/>
-<input type="button" value="Eliminar" onclick="window.location.href='/subjects/delete/{{ i.idSubject }}'"/>
-{% endif %}
 
+<table style="background-color:#CEE3F6" width="100%" cellpadding="3" cellspacing="3">	
+<tr>
+		<td><b>Id</b></td>
+		<td><b>Nom</b></td>
+	
+	</tr>
+	{% for i in subjects_list %}
+	<tr>
+		<td>{{ i.idSubject }} </a></td>
+		<td><a href="/subjects/{{ i.idSubject }}"> {{ i.name }} </a></td>
+		<td><input type="button" value="Editar" onclick="window.location.href='/subjects/edit/{{ i.idSubject }}'"/></td>
+		<td><input type="button" value="Eliminar" onclick="window.location.href='/subjects/delete/{{ i.idSubject }}'"/></td>
+	</tr>
 	
 	{% endfor %}
-
-
-
-
+</table>		
 {% endblock %}

@@ -43,6 +43,7 @@ urlpatterns = patterns('',
     url(r'^evaluations/edit/(?P<evaluation_id>\w+)/$', evaluation_edit, name='edit_evaluation'),
     url(r'^evaluations/update/(?P<evaluation_id>\w+)/$', evaluation_update, name='update_evaluation'),   
     url(r'^evaluations/delete/(?P<evaluation_id>\w+)/$', evaluation_delete, name='delete_evaluation'),
+    url(r'^evaluations/(?P<evaluation_id>\w+)/$', singular_evaluation),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

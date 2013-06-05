@@ -276,6 +276,26 @@ def evaluation(request):
 	context_instance = RequestContext(request)
 	return render_to_response('evaluation.html',variables,context_instance)
 
+def singular_evaluation(request,evaluation_id):
+	
+	try:
+		evaluation=get_object_or_404(Evaluation,id=evaluation_id)
+		variables = Context({
+			'contentbody': 'Detalls evaluacio:',
+			'titlehead': 'Teacher Avaluation',
+			'pagetitle': 'Evaluacio de docencia',
+			'teacher': evaluation.teacher,
+			'number': evaluation.numericEvaluation,
+			'subject': evaluation.subject,
+			'comment': evaluation.comment,
+			'date': evaluation.date,
+			})
+		context_instance=RequestContext(request)
+	except:
+		raise Http404
+	return render_to_response('single_evaluation.html',variables,context_instance)
+
+
 def evaluation_add (request):
 	if request.method == 'POST':
             form = AddEvaluation(request.POST)

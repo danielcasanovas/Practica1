@@ -1,19 +1,18 @@
 {% extends "templateBase.html" %}
 {% block content %}
-	<b><u>{{ contentbody }}</u></b>
-	<br>
-	<br>
-	<u>Nom:</u> {{ namesubject }}
-	<br>
-	<u>Professor que la imparteix:</u> <a href="/teachers/{{ teacher.idTeacher }}"> {{ teacher}} </a>
-	<br>
-	<u>Credits:</u> {{ credits }}
-	<br>
-	<u>Carrera:</u> <a href="/degrees/{{ degree.idDegree }}"> {{ degree}} </a>
+<b><u>{{ contentbody }}</u></b>
 <br>
 <br>
-
-<a href="javascript:history.back()"> Tornar enrere </a>
+<u>Nom:</u> {{ namesubject }}
+<br>
+<u>Professor que la imparteix:</u> <a href="/teachers/{{ teacher.idTeacher }}"> {{ teacher}} </a>
+<br>
+<u>Credits:</u> {{ credits }}
+<br>
+<u>Carrera:</u> <a href="/degrees/{{ degree.idDegree }}"> {{ degree}} </a>
+<br>
+<br>
+<input type="button" value="Torna enrrere" onclick="history.back()"/>
 
 {% endblock %}
 

@@ -3,15 +3,20 @@
 <b><u>{{ contentbody }}</u></b>
 <br>
 	
+<table style="background-color:#CEE3F6" width="100%" cellpadding="3" cellspacing="3">	
+<tr>
+		<td><b>Id</b></td>
+		<td><b>Nom</b></td>
+	
+	</tr>
 	{% for i in teachers_list %}
-<br>
-	ID: {{ i.idTeacher }} - Nom :  <a href="/teachers/{{ i.idTeacher }}"> {{ i.name }} </a> 
-{% if user.username %}
-<input type="button" value="Editar" onclick="window.location.href='/teachers/edit/{{ i.idTeacher }}'"/> 
-<input type="button" value="Eliminar" onclick="window.location.href='/teachers/delete/{{ i.idTeacher }}'"/> 
-{% endif %}
-
-
+	<tr>
+		<td>{{ i.idTeacher }} </a></td>
+		<td><a href="/teachers/{{ i.idTeacher }}"> {{ i.name }} </a></td>
+		<td><input type="button" value="Editar" onclick="window.location.href='/teachers/edit/{{ i.idTeacher }}'"/> </td>
+		<td><input type="button" value="Eliminar" onclick="window.location.href='/teachers/delete/{{ i.idTeacher }}'"/> </td>
+	</tr>
 	
 	{% endfor %}
+</table>	
 {% endblock %}

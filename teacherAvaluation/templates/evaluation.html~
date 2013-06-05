@@ -13,7 +13,7 @@
 	<tr>
 		<td><a href="/teachers/{{ i.teacher.idTeacher }}"> {{ i.teacher }} </a></td>
 		<td><a href="/subjects/{{ i.subject.idSubject }}"> {{ i.subject }} </a></td>
-		<td>{{ i.numericEvaluation }}</td>
+		<td><a href="/evaluations/{{ i.id}}">{{ i.numericEvaluation }}</a></td>
 		<td><input type="button" value="Editar" onclick="window.location.href='/evaluations/edit/{{ i.id }}'"/></td>
 		<td><input type="button" value="Eliminar" onclick="window.location.href='/evaluations/delete/{{ i.id }}'"/></td>
 	</tr>

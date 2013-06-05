@@ -3,14 +3,14 @@
 <b><u>{{ contentbody }}</u></b>
 <br>
 <br>
-<u>Nom:</u> {{ nameteacher }}
+<u>Nom:</u> {{ nameteacher }}	
 <br>
 <u>Sexe:</u> {{ sex }}
 <br>
 <u>Nacionalitat:</u> {{ nationality }}
 <br>
 <br>
-<a href="javascript:history.back()"> Tornar enrere </a>
+<input type="button" value="Torna enrrere" onclick="history.back()"/>
 {% endblock %}
 
 

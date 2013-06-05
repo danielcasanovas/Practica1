@@ -8,7 +8,7 @@
 	ID: {{ i.idSubject }} - Nom :  <a href="/subjects/{{ i.idSubject }}"> {{ i.name }} </a>
 {% if user.username %}
 <input type="button" value="Editar" onclick="window.location.href='/subjects/edit/{{ i.idSubject }}'"/>
-<input type="button" value="Eliminar" onclick="window.location.href='/degrees/delete/{{ i.idSubject }}'"/>
+<input type="button" value="Eliminar" onclick="window.location.href='/subjects/delete/{{ i.idSubject }}'"/>
 {% endif %}
 
 	

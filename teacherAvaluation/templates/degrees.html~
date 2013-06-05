@@ -2,18 +2,20 @@
 {% block content %}
 <b><u>{{ contentbody }}</u></b>
 <br>
+<table style="background-color:#CEE3F6" width="100%" cellpadding="3" cellspacing="3">	
+<tr>
+		<td><b>Id</b></td>
+		<td><b>Nom</b></td>
 	
+	</tr>
 	{% for i in degrees_list %}
-<br>
-	ID: {{ i.idDegree }} - Nom :  <a href="/degrees/{{ i.idDegree }}"> {{ i.name }} </a>
-{% if user.username %}
-<input type="button" value="Editar" onclick="window.location.href='/degrees/edit/{{ i.idDegree }}'"/>
-<input type="button" value="Eliminar" onclick="window.location.href='/degrees/delete/{{ i.idTeacher }}'"/>
-{% endif %}
+	<tr>
+		<td>{{ i.idDegree }} </a></td>
+		<td><a href="/degrees/{{ i.idDegree }}"> {{ i.name }} </a></td>
+		<td><input type="button" value="Editar" onclick="window.location.href='/degrees/edit/{{ i.id }}'"/></td>
+		<td><input type="button" value="Eliminar" onclick="window.location.href='/degrees/delete/{{ i.id }}'"/></td>
+	</tr>
 	
 	{% endfor %}
-
-
-
-
+</table>	
 {% endblock %}

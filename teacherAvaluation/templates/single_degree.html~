@@ -13,7 +13,7 @@
 <br>
 <br>
 
-<a href="javascript:history.back()"> Tornar enrere </a>
+<input type="button" value="Torna enrrere" onclick="history.back()"/>
 
 {% endblock %}
 
