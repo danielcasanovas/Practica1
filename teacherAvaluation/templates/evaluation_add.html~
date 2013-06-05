@@ -4,6 +4,6 @@
 <form method="post" action="/evaluations/add/">
 {% csrf_token %}
         {{ form.as_p }}</p>
-    <input type="submit" value="Create" />
+    <input type="submit" value="Crear" /><input type="button" value="Torna enrrere" onclick="history.back()"/>
 </form>
 {% endblock %}

@@ -1,0 +1,43 @@
+{% extends "templateBase.html" %}
+{% block content %}
+<b><u>{{ contentbody }}</u></b>
+<br>
+<br>
+<span vocab="http://schema.org/" typeof="Review">	
+	<u>Professor:</u> 
+	<span rel="accountablePerson">
+		<span typeof="Person">
+			<span property="name"><a href="/teachers/{{ teacher.idTeacher }}">{{ teacher }}</span></a>	
+		</span>
+	</span>
+	<br>
+	<u>Assignatura:</u> 
+	<span rel="about">
+		<span typeof="Thing">
+			<span property="name"><a href="/subjects/{{ subject.idSubject }}">{{ subject }}</span></a>	
+		</span>
+	</span>
+	<br>
+	<u>Nota evaluacio:</u> 
+	<span rel="reviewRating">
+		<span typeof="Rating">
+			<span property="bestRating" content="10"></span>
+			<span property="worstRating" content="0"></span>
+			<span property="ratingValue">{{ number }}</span>	
+		</span>
+	</span>
+	<br>
+	<u>Comentaris:</u> 
+	<span rel="comment">
+		<span typeof="UserComments">
+			<span property="commentText">{{ comment }}</span>	
+		</span>
+	</span>
+	<br>
+	<u>Realitzada el dia:</u> <span property="dateCreated">{{ date }}</span>
+	<br>
+	<br>
+</span>
+<input type="button" value="Torna enrrere" onclick="history.back()"/>
+{% endblock %}
+
