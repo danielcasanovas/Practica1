@@ -4,51 +4,52 @@
 <br>
 <br>
 <span vocab="http://schema.org/" typeof="Person">	
-<u>Nom:</u> <span property="name">{{ nameteacher }}</span>	
-<br>
-<u>Sexe:</u> <span property="gender">{{ sex }}</span>
-<br>
-<u>Nacionalitat:</u> <span property="nacionality">{{ nationality }}</span>
-<br>
-<br>
-<span rel="aggregateRating">
-	<p typeof="AggregateRating">
-		Promedi de reviews :	
-		<span	property="ratingValue">{{ reviewRating.rating__avg }}</span>
-		{%	with teacher.teacherreview_set.all|length as reviewCount %}
-			amb <span property="reviewCount">{{ review|length }}</span>
-			review{{ reviewCount|pluralize }}
-		{%	endwith	%}
-	</p>
-</span>
-<br>
-<span rel="review">
-<b><u>Reviews:</u></b>
-<table style="background-color:#CEE3F6" width="100%" cellpadding="3" cellspacing="3">	
-<tr>
-		<td><b>Puntuació</b></td>
-		<td><b>Comentari</b></td>
-		<td><b>Usuari review</b></td>
-		<td><b>Data</b></td>
+	<u>Nom:</u> <span property="name">{{ nameteacher }}</span>	
+	<br>
+	<u>Sexe:</u> <span property="gender">{{ sex }}</span>
+	<br>
+	<u>Nacionalitat:</u> <span property="nacionality">{{ nationality }}</span>
+	<br>
+	<br>
+	<span rel="aggregateRating">
+		<p typeof="AggregateRating">
+			Promedi de reviews :	
+			<span property="ratingValue">{{ reviewRating.rating__avg }}</span>
+			{%	with teacher.teacherreview_set.all|length as reviewCount %}
+				amb <span property="reviewCount">{{ review|length }}</span>
+				review{{ reviewCount|pluralize }}
+			{%	endwith	%}
+		</p>
+	</span>
+	<br>
+	<span rel="review">
+	<b><u>Reviews:</u></b>
+	<table style="background-color:#CEE3F6" width="100%" cellpadding="3" cellspacing="3">	
+	<tr>
+			<td><b>Puntuació</b></td>
+			<td><b>Comentari</b></td>
+			<td><b>Usuari review</b></td>
+			<td><b>Data</b></td>
 	
-</tr>
-	{% for review in review %}
-	   <tr>
-	    <span typeof="Review">
-			<p rel="reviewRating" typeof="Rating">
-			<span property="worstRating" content="{{ RATING_CHOICES.0.0	}}"></span>
-			<span property="ratingValue"><td>{{ review.rating }}</td></span>
-			{% with RATING_CHOICES|last	as best %}
-				<span property="bestRating"	content="{{ best.0 }}"></span>
-			{% endwith %}
-	        <td><span property="description">{{ review.comment }}</p></td>
-	        <td><span property="author">{{ review.user }}</span></td>
-		<td><span property="publishDate">{{ review.date }}</span></td>
-	    </span>
-	   </tr>
-	{% endfor %}
-</table>
-<br>
+	</tr>
+		{% for review in review %}
+		   <tr>
+			<span rel="reviewRating" typeof="Rating">
+				{% with RATING_CHOICES|last	as best %}
+					<span property="bestRating"	content="{{ best.0 }}"></span>
+				{% endwith %}
+				<span property="worstRating" content="{{ RATING_CHOICES.0.0	}}"></span>
+				<td><span property="ratingValue">{{ review.rating }}</td></span>
+				<td><span property="description">{{ review.comment }}</p></td>
+				<td><span property="author">{{ review.user }}</span></td>
+				<td><span property="publishDate">{{ review.date }}</span></td>
+			</span>
+		   </tr>
+		{% endfor %}
+	</table>
+	<br>
+	</span>
+</span>
 <b><u>Afegir Review</u></b>
 	<form action="." method="post">
 		{% csrf_token %}
