@@ -11,41 +11,50 @@
 <u>Nacionalitat:</u> <span property="nacionality">{{ nationality }}</span>
 <br>
 <br>
-{% if teacher.teacherreview_set.all|length > 0 %}
-	<span rel="aggregateRating">
-		<p typeof="AggregateRating">
-			Promedi de reviews :	
-			<span	property="ratingValue">{{ teacher.averageRating|stringformat:".1f" }}</span>
-			{%	with teacher.teacherreview_set.all|length as reviewCount %}
-				amb <span property="reviewCount">{{ reviewCount }}</span>
-				review{{ reviewCount|pluralize }}
-			{%	endwith	%}
-		</p>
-	</span>
-	<ul rel="review">
-		{% for review in teacher.teacherreview_set.all %}
-		    <li typeof="Review">
-				<p rel="reviewRating" typeof="Rating">
-				<span property="worstRating" content="{{ RATING_CHOICES.0.0	}}"></span>
-				<span property="ratingValue">{{ review.rating }}</span>
-				star{{ review.rating|pluralize }}
-				{% with RATING_CHOICES|last	as best %}
-					<span property="bestRating"	content="{{ best.0 }}"></span>
-				{% endwith %}
-		        <p property="description">{{ review.comment }}</p>
-		        <p>Creat per <span property="author">{{ review.user }}</span> en data <span property="publishDate">{{ review.date }</span>
-		    </li>
-		{% endfor %}
-	</ul>
-
+<span rel="aggregateRating">
+	<p typeof="AggregateRating">
+		Promedi de reviews :	
+		<span	property="ratingValue">{{ reviewRating.rating__avg }}</span>
+		{%	with teacher.teacherreview_set.all|length as reviewCount %}
+			amb <span property="reviewCount">{{ review|length }}</span>
+			review{{ reviewCount|pluralize }}
+		{%	endwith	%}
+	</p>
 </span>
-{% endif %}
+<br>
+<span rel="review">
+<b><u>Reviews:</u></b>
+<table style="background-color:#CEE3F6" width="100%" cellpadding="3" cellspacing="3">	
+<tr>
+		<td><b>Puntuació</b></td>
+		<td><b>Comentari</b></td>
+		<td><b>Usuari review</b></td>
+		<td><b>Data</b></td>
+	
+</tr>
+	{% for review in reviews %}
+	   <tr>
+	    <span typeof="Review">
+			<p rel="reviewRating" typeof="Rating">
+			<span property="worstRating" content="{{ RATING_CHOICES.0.0	}}"></span>
+			<span property="ratingValue"><td>{{ review.rating }}</td></span>
+			{% with RATING_CHOICES|last	as best %}
+				<span property="bestRating"	content="{{ best.0 }}"></span>
+			{% endwith %}
+	        <td><span property="description">{{ review.comment }}</p></td>
+	        <td><span property="author">{{ review.user }}</span></td>
+		<td><span property="publishDate">{{ review.date }}</span></td>
+	    </span>
+	   </tr>
+	{% endfor %}
+</table>
+<br>
 <b><u>Afegir Review</u></b>
-	<form action="../review/{{idteacher}}/" method="post">
+	<form action="." method="post">
 		{% csrf_token %}
 		Rating:
 		{% for rate in RATING_CHOICES %}
-		    <input type="radio" name="rating" id="rating{{ forloop.counter }}" value="{{ rate.1 }}" />
+		    <input type="radio" name="rating" id="rating{{ forloop.counter }}" value="{{ rate.0 }}" />
 		    <label for="choice{{ forloop.counter }}">{{ rate.1 }} punt{{ rate.0|pluralize }}</label>
 		{% endfor %}
 		<br>
