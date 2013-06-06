@@ -47,3 +47,11 @@ class Evaluation(models.Model):
 	def __unicode__(self):
 		return self.teacher.name+self.subject.name+str(self.numericEvaluation)
 
+class Review(models.Model):
+	RATING_CHOICES = ((1,'Un'),(2,'Dos'),(3,'Tres'),(4,'Quatre'),(5,'Cinc'))
+	rating = models.PositiveSmallIntegerField('Ratings (stars)', blank=False, default=3, choices=RATING_CHOICES)
+	comment = models.TextField(blank=True, null=True)
+	teacher = models.ForeignKey(Teacher)
+	user = models.ForeignKey(User, blank=False)
+	date = models.DateField(default=date.today)
+	

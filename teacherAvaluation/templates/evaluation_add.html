@@ -1,12 +1,6 @@
 {% extends "templateBase.html" %}
 {% block content %}
 <p>Nova Evaluació: (Metrica entre 1 i 10)</p>
-<span rel="aggregateRating">
-	<p typeof="AggregateRating">
-	<span property="ratingValue">5</span>
-	<span property="reviewCount">1</span>
-	</p>
-</span>
 <form method="post" action="/evaluations/add/">
 {% csrf_token %}
         {{ form.as_p }}</p>

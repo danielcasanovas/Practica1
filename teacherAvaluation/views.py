@@ -56,9 +56,11 @@ def singular_teacher(request,teacher_id):
 			'contentbody': 'Dades Personals Professor:',
 			'titlehead': 'Teacher Avaluation',
 			'pagetitle': 'Evaluacio de docencia',
+			'idteacher': teacher.idTeacher,
 			'nameteacher': teacher.name,
 			'sex': teacher.sexe,
-			'nationality': teacher.nationality
+			'nationality': teacher.nationality,
+			'RATING_CHOICES' : Review.RATING_CHOICES,
 			})
 		context_instance = RequestContext(request)
 	except:
@@ -289,6 +291,7 @@ def singular_evaluation(request,evaluation_id):
 			'subject': evaluation.subject,
 			'comment': evaluation.comment,
 			'date': evaluation.date,
+			'RATING_CHOICES': Evaluation.RATING_CHOICES,
 			})
 		context_instance=RequestContext(request)
 	except:
@@ -383,3 +386,23 @@ def logoutPage(request):
 
 	context_instance = RequestContext(request)
 	return render_to_response('mainpage.html',variables,context_instance)
+
+def review(request, teacher_id):
+	teacher = Teacher.objects.get(idTeacher=teacher_id)
+	review = Review(rating=request.POST["rating"],
+		comment=request.POST["comment"],
+		user=request.user,
+		teacher=teacher)
+	review.save()
+	variables = Context({
+			'contentbody': 'Dades Personals Professor:',
+			'titlehead': 'Teacher Avaluation',
+			'pagetitle': 'Evaluacio de docencia',
+			'idteacher': teacher.idTeacher,
+			'nameteacher': teacher.name,
+			'sex': teacher.sexe,
+			'nationality': teacher.nationality,
+			'RATING_CHOICES' : Review.RATING_CHOICES,
+			})
+	context_instance = RequestContext(request)
+	return render_to_response('single_teacher.html',variables,context_instance)

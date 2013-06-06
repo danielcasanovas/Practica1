@@ -3,14 +3,57 @@
 <b><u>{{ contentbody }}</u></b>
 <br>
 <br>
-<u>Nom:</u> {{ nameteacher }}	
+<span vocab="http://schema.org/" typeof="Person">	
+<u>Nom:</u> <span property="name">{{ nameteacher }}</span>	
 <br>
-<u>Sexe:</u> {{ sex }}
+<u>Sexe:</u> <span property="gender">{{ sex }}</span>
 <br>
-<u>Nacionalitat:</u> {{ nationality }}
+<u>Nacionalitat:</u> <span property="nacionality">{{ nationality }}</span>
 <br>
 <br>
-<input type="button" value="Torna enrrere" onclick="history.back()"/>
+{% if teacher.teacherreview_set.all|length > 0 %}
+	<span rel="aggregateRating">
+		<p typeof="AggregateRating">
+			Promedi de reviews :	
+			<span	property="ratingValue">{{ teacher.averageRating|stringformat:".1f" }}</span>
+			{%	with teacher.teacherreview_set.all|length as reviewCount %}
+				amb <span property="reviewCount">{{ reviewCount }}</span>
+				review{{ reviewCount|pluralize }}
+			{%	endwith	%}
+		</p>
+	</span>
+	<ul rel="review">
+		{% for review in teacher.teacherreview_set.all %}
+		    <li typeof="Review">
+				<p rel="reviewRating" typeof="Rating">
+				<span property="worstRating" content="{{ RATING_CHOICES.0.0	}}"></span>
+				<span property="ratingValue">{{ review.rating }}</span>
+				star{{ review.rating|pluralize }}
+				{% with RATING_CHOICES|last	as best %}
+					<span property="bestRating"	content="{{ best.0 }}"></span>
+				{% endwith %}
+		        <p property="description">{{ review.comment }}</p>
+		        <p>Creat per <span property="author">{{ review.user }}</span> en data <span property="publishDate">{{ review.date }</span>
+		    </li>
+		{% endfor %}
+	</ul>
+
+</span>
+{% endif %}
+<b><u>Afegir Review</u></b>
+	<form action="../review/{{idteacher}}/" method="post">
+		{% csrf_token %}
+		Rating:
+		{% for rate in RATING_CHOICES %}
+		    <input type="radio" name="rating" id="rating{{ forloop.counter }}" value="{{ rate.0 }}" />
+		    <label for="choice{{ forloop.counter }}">{{ rate.1 }} punt{{ rate.0|pluralize }}</label>
+		{% endfor %}
+		<br>
+		Comentari: <input type="text" name="comment" id="comment">
+		<br>
+		<input type="submit" value="Afegir Review"/>
+		<input type="button" value="Torna enrrere" onclick="history.back()"/>
+	</form>
 {% endblock %}
 
 
