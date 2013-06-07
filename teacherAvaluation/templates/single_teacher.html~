@@ -21,6 +21,10 @@
 			{%	endwith	%}
 		</p>
 	</span>
+<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+<span itemprop="ratingValue">4</span> stars -
+based on <span itemprop="reviewCount">250</span> reviews
+</div>
 	<br>
 	<span rel="review">
 	<b><u>Reviews:</u></b>
@@ -34,7 +38,6 @@
 	</tr>
 		{% for review in review %}
 		   <tr>
-		    <span typeof="Review">
 			<span rel="reviewRating" typeof="Rating">
 				{% with RATING_CHOICES|last	as best %}
 					<span property="bestRating"	content="{{ best.0 }}"></span>
@@ -45,7 +48,6 @@
 				<td><span property="author">{{ review.user }}</span></td>
 				<td><span property="publishDate">{{ review.date }}</span></td>
 			</span>
-		    </span>
 		   </tr>
 		{% endfor %}
 	</table>
