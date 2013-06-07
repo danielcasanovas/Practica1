@@ -1,9 +1,20 @@
-teacherAvaluation
+teacherAvaluation - Documentation
+
+=================
+
+Pràctica 3 – Desenvolupament de una aplicació web bàsica , Sistemes i tecnologies web , GEI 2012/2013 , EPS , Universitat de Lleida – Daniel Casanovas Gayoso i Diego Gaspar Casamayor
+
+Github públic : https://github.com/danielcasanovas/Practica1
+
+En aquesta tercera part de la practica, RDF, primer de tot hem afegit reviews al nostre model de Professor(individual), i un cop fet això la pàgina de detall de professors i la pàgina de detalls de avaluacions d’assignatures impartides per professors han sigut implementades amb marcat semàntic RDFa. Hem adaptat el marcat semàntic a l’aplicació de google http://www.google.com/webmasters/tools/richsnippets?hl=es i hem comprobat l'arbre sintàctic equivalent als atributs mostrats en les nostres pàgines abans esmentades amb la seguent dirrecció : http://rdfa.info/play/
+
+A més a més, hem afegit subtipus amb les seves pròpies propietats,  i hem afegit la funció de crear ratings per a cada professor , la visualització de tots els reviews de un professor a mes de la visualització de les estrelles a la cerca de google d’aquests ratings; Tot això a la entitat de professor.
+
 =================
 
 Pràctica 2 – Desenvolupament de una aplicació web bàsica , Sistemes i tecnologies web , GEI 2012/2013 , EPS , Universitat de Lleida – Daniel Casanovas Gayoso i Diego Gaspar Casamayor
 
-Github públic : git@github.com:danielcasanovas/Practica1.git
+Github públic : https://github.com/danielcasanovas/Practica1
 
 En aquesta part de la pràctica , hem desenvolupat els mètodes per tal de la interacció entre usuari- Web, tal com demanava a l’enunciat per tal de poder Crear, eliminar y modificar instàncies de la nostra aplicació així com fer els autocomplete proposats.
 
@@ -16,9 +27,6 @@ Així doncs, si vols crear una Avaluació de Professor assignatura, pot ser que 
 (2,5 puntos) Permitir que los usuarios modifiquen instancias de objetos, por ejemplo que puedan modificar las instancias creadas por ellos mismos.
 
 A part de poder crear instancies a la nostra aplicació, pots modificar també qualsevol instancia creada anteriorment, sempre i quan estiguis loguejat. Així pots rectificar qualsevol cosa creada anteriorment, o bé alguna avaluació mal feta.
-
-
-
 
 (1 punto) Permitir que los usuarios borren instancias de los objetos del modelo, normalmente las creadas por ellos mismos.
 
@@ -45,7 +53,7 @@ Només els usuaris loguejats poden utilitzar la web com a WEB 2.0.
 
 Pràctica 1 – Desenvolupament de una aplicació web bàsica , Sistemes i tecnologies web , GEI 2012/2013 , EPS , Universitat de Lleida – Daniel Casanovas Gayoso i Diego Gaspar Casamayor
 
-Github públic : git@github.com:danielcasanovas/Practica1.git
+Github públic : https://github.com/danielcasanovas/Practica1
 
 En aquesta practica tal i com sens demanava , hem desenvolupat una aplicació web bàsica que tingues accés a les dades de una base de dades , utilitzant les eines proporcionades per Django.
 

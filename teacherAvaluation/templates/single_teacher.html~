@@ -3,71 +3,62 @@
 <b><u>{{ contentbody }}</u></b>
 <br>
 <br>
-<span vocab="http://schema.org/" typeof="Person">	
-	<u>Nom:</u> <span property="name">{{ nameteacher }}</span>	
-	<br>
-	<u>Sexe:</u> <span property="gender">{{ sex }}</span>
-	<br>
-	<u>Nacionalitat:</u> <span property="nacionality">{{ nationality }}</span>
-	<br>
-	<br>
-	<span rel="aggregateRating">
-		<p typeof="AggregateRating">
-			Promedi de reviews :	
-			<span property="ratingValue">{{ reviewRating.rating__avg }}</span>
-			{%	with teacher.teacherreview_set.all|length as reviewCount %}
-				amb <span property="reviewCount">{{ review|length }}</span>
-				review{{ reviewCount|pluralize }}
-			{%	endwith	%}
-		</p>
-	</span>
-<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-<span itemprop="ratingValue">4</span> stars -
-based on <span itemprop="reviewCount">250</span> reviews
-</div>
-	<br>
-	<span rel="review">
-	<b><u>Reviews:</u></b>
-	<table style="background-color:#CEE3F6" width="100%" cellpadding="3" cellspacing="3">	
-	<tr>
-			<td><b>Puntuació</b></td>
-			<td><b>Comentari</b></td>
-			<td><b>Usuari review</b></td>
-			<td><b>Data</b></td>
-	
-	</tr>
-		{% for review in review %}
-		   <tr>
-			<span rel="reviewRating" typeof="Rating">
-				{% with RATING_CHOICES|last	as best %}
-					<span property="bestRating"	content="{{ best.0 }}"></span>
-				{% endwith %}
-				<span property="worstRating" content="{{ RATING_CHOICES.0.0	}}"></span>
-				<td><span property="ratingValue">{{ review.rating }}</td></span>
-				<td><span property="description">{{ review.comment }}</p></td>
-				<td><span property="author">{{ review.user }}</span></td>
-				<td><span property="publishDate">{{ review.date }}</span></td>
+<div id="content">
+	<span vocab="http://schema.org/" typeof="CreativeWork">
+		<span rel="accountablePerson">
+			<span typeof="Person">
+				<u>Nom:</u> <span property="name">{{ nameteacher }}</span>	
+				<br>				
+				<u>Sexe:</u> <span property="gender">{{ sex }}</span>
+				<br>
+				<u>Nacionalitat:</u> <span property="nacionality">{{ nationality }}</span>
 			</span>
-		   </tr>
-		{% endfor %}
-	</table>
-	<br>
+		</span>
+		<span rel="aggregateRating">
+			<p typeof="AggregateRating">
+				Promedi de reviews :	
+				<span property="ratingValue">{{ reviewRating.rating__avg }}</span> amb 
+				<span property="reviewCount">{{ review|length }}</span> review{{ review|pluralize }}
+				<br>Escala reviews : (<span property="worstRating">{{ RATING_CHOICES.0.0 }}</span>-
+				<span property="bestRating">{{ RATING_CHOICES.4.0 }}</span>)
+			</p>
+		</span>
+		<span rel="review">
+				<b><u>Reviews realitzades:</u></b>
+				<table style="background-color:#CEE3F6" width="100%" cellpadding="3" cellspacing="3">	
+					<tr>
+						<td><b>Puntuació - Comentari - Realitzada per - Data</b></td>
+					</tr>
+					{% for review in review %}
+					<tr>
+						<td>
+						   <span typeof="Review">
+								<span rel="reviewRating" typeof="Rating">
+								<span property="ratingValue">{{ review.rating }}</span> -
+								<span property="description">{{ review.comment }}</span> -
+								<span property="author">{{ review.user }}</span> -
+								<span property="publishDate">{{ review.date }}</span> -
+						   </span>
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+				<br>
+		</span>
 	</span>
-</span>
-<b><u>Afegir Review</u></b>
-	<form action="." method="post">
-		{% csrf_token %}
-		Rating:
-		{% for rate in RATING_CHOICES %}
-		    <input type="radio" name="rating" id="rating{{ forloop.counter }}" value="{{ rate.0 }}" />
-		    <label for="choice{{ forloop.counter }}">{{ rate.1 }} punt{{ rate.0|pluralize }}</label>
-		{% endfor %}
-		<br>
-		Comentari: <input type="text" name="comment" id="comment">
-		<br>
-		<input type="submit" value="Afegir Review"/>
-		<input type="button" value="Torna enrrere" onclick="history.back()"/>
-	</form>
+	<b><u>Afegir Review</u></b>
+		<form action="." method="post">
+			{% csrf_token %}
+			Rating:
+			{% for rate in RATING_CHOICES %}
+			    <input type="radio" name="rating" id="rating{{ forloop.counter }}" value="{{ rate.0 }}" />
+			    <label for="choice{{ forloop.counter }}">{{ rate.1 }} punt{{ rate.0|pluralize }}</label>
+			{% endfor %}
+			<br>
+			Comentari: <input type="text" name="comment" id="comment">
+			<br>
+			<input type="submit" value="Afegir Review"/>
+			<input type="button" value="Torna enrrere" onclick="history.back()"/>
+		</form>
+</div>
 {% endblock %}
-
-
